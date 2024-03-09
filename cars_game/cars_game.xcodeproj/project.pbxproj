@@ -7,20 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		543A86F42B9C57420002D878 /* mainScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A86F32B9C57420002D878 /* mainScreenVC.swift */; };
 		5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D12B7F60EE0021199D /* AppDelegate.swift */; };
 		5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D32B7F60EE0021199D /* SceneDelegate.swift */; };
-		5493C9D62B7F60EE0021199D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D52B7F60EE0021199D /* ViewController.swift */; };
-		5493C9D92B7F60EE0021199D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9D72B7F60EE0021199D /* Main.storyboard */; };
 		5493C9DB2B7F60F00021199D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9DA2B7F60F00021199D /* Assets.xcassets */; };
 		5493C9DE2B7F60F00021199D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		543A86F32B9C57420002D878 /* mainScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenVC.swift; sourceTree = "<group>"; };
 		5493C9CE2B7F60EE0021199D /* cars_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cars_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5493C9D12B7F60EE0021199D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5493C9D32B7F60EE0021199D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5493C9D52B7F60EE0021199D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5493C9D82B7F60EE0021199D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5493C9DA2B7F60F00021199D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5493C9DD2B7F60F00021199D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5493C9DF2B7F60F00021199D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,10 +54,9 @@
 		5493C9D02B7F60EE0021199D /* cars_game */ = {
 			isa = PBXGroup;
 			children = (
+				543A86F32B9C57420002D878 /* mainScreenVC.swift */,
 				5493C9D12B7F60EE0021199D /* AppDelegate.swift */,
 				5493C9D32B7F60EE0021199D /* SceneDelegate.swift */,
-				5493C9D52B7F60EE0021199D /* ViewController.swift */,
-				5493C9D72B7F60EE0021199D /* Main.storyboard */,
 				5493C9DA2B7F60F00021199D /* Assets.xcassets */,
 				5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */,
 				5493C9DF2B7F60F00021199D /* Info.plist */,
@@ -127,7 +124,6 @@
 			files = (
 				5493C9DE2B7F60F00021199D /* LaunchScreen.storyboard in Resources */,
 				5493C9DB2B7F60F00021199D /* Assets.xcassets in Resources */,
-				5493C9D92B7F60EE0021199D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5493C9D62B7F60EE0021199D /* ViewController.swift in Sources */,
+				543A86F42B9C57420002D878 /* mainScreenVC.swift in Sources */,
 				5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5493C9D72B7F60EE0021199D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5493C9D82B7F60EE0021199D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +285,6 @@
 				INFOPLIST_FILE = cars_game/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,7 +312,6 @@
 				INFOPLIST_FILE = cars_game/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
