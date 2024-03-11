@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07486966DB30D65997B7F195 /* libPods-cars_game.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA826CF61DF3815358668CA /* libPods-cars_game.a */; };
 		543A86F42B9C57420002D878 /* mainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A86F32B9C57420002D878 /* mainScreenViewController.swift */; };
 		5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D12B7F60EE0021199D /* AppDelegate.swift */; };
 		5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D32B7F60EE0021199D /* SceneDelegate.swift */; };
 		5493C9DB2B7F60F00021199D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9DA2B7F60F00021199D /* Assets.xcassets */; };
 		5493C9DE2B7F60F00021199D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */; };
 		549B7BC42B9F050C00CD44BC /* mainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549B7BC32B9F050C00CD44BC /* mainScreenRouter.swift */; };
+		54B2C8D92B9F132300AF4857 /* mainScreenCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8D82B9F132300AF4857 /* mainScreenCustomTableViewCell.swift */; };
 		54BFA39B2B9C595400741E4E /* mainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39A2B9C595400741E4E /* mainScreenPresenter.swift */; };
 		54BFA39D2B9C610D00741E4E /* mainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39C2B9C610D00741E4E /* mainScreenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		130376472200ADFD5D5FC6BA /* Pods-cars_game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cars_game.debug.xcconfig"; path = "Target Support Files/Pods-cars_game/Pods-cars_game.debug.xcconfig"; sourceTree = "<group>"; };
+		2B36710F9D7AC290ADD10300 /* Pods-cars_game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cars_game.release.xcconfig"; path = "Target Support Files/Pods-cars_game/Pods-cars_game.release.xcconfig"; sourceTree = "<group>"; };
+		4EA826CF61DF3815358668CA /* libPods-cars_game.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cars_game.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		543A86F32B9C57420002D878 /* mainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenViewController.swift; sourceTree = "<group>"; };
 		5493C9CE2B7F60EE0021199D /* cars_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cars_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5493C9D12B7F60EE0021199D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +31,7 @@
 		5493C9DD2B7F60F00021199D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5493C9DF2B7F60F00021199D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		549B7BC32B9F050C00CD44BC /* mainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C8D82B9F132300AF4857 /* mainScreenCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenCustomTableViewCell.swift; sourceTree = "<group>"; };
 		54BFA39A2B9C595400741E4E /* mainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenPresenter.swift; sourceTree = "<group>"; };
 		54BFA39C2B9C610D00741E4E /* mainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainScreenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07486966DB30D65997B7F195 /* libPods-cars_game.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +53,8 @@
 			children = (
 				5493C9D02B7F60EE0021199D /* cars_game */,
 				5493C9CF2B7F60EE0021199D /* Products */,
+				63EFB0019B26C98B4BE1E678 /* Pods */,
+				B99FAA3CD918A51E094D4BF1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,11 +83,29 @@
 			isa = PBXGroup;
 			children = (
 				543A86F32B9C57420002D878 /* mainScreenViewController.swift */,
+				54B2C8D82B9F132300AF4857 /* mainScreenCustomTableViewCell.swift */,
 				54BFA39A2B9C595400741E4E /* mainScreenPresenter.swift */,
 				54BFA39C2B9C610D00741E4E /* mainScreenModel.swift */,
 				549B7BC32B9F050C00CD44BC /* mainScreenRouter.swift */,
 			);
 			path = mainScreen;
+			sourceTree = "<group>";
+		};
+		63EFB0019B26C98B4BE1E678 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				130376472200ADFD5D5FC6BA /* Pods-cars_game.debug.xcconfig */,
+				2B36710F9D7AC290ADD10300 /* Pods-cars_game.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B99FAA3CD918A51E094D4BF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EA826CF61DF3815358668CA /* libPods-cars_game.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5493C9E22B7F60F00021199D /* Build configuration list for PBXNativeTarget "cars_game" */;
 			buildPhases = (
+				86EDD94230F657CBE5833F1A /* [CP] Check Pods Manifest.lock */,
 				5493C9CA2B7F60EE0021199D /* Sources */,
 				5493C9CB2B7F60EE0021199D /* Frameworks */,
 				5493C9CC2B7F60EE0021199D /* Resources */,
@@ -146,6 +174,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		86EDD94230F657CBE5833F1A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cars_game-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5493C9CA2B7F60EE0021199D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -155,6 +208,7 @@
 				549B7BC42B9F050C00CD44BC /* mainScreenRouter.swift in Sources */,
 				54BFA39B2B9C595400741E4E /* mainScreenPresenter.swift in Sources */,
 				5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */,
+				54B2C8D92B9F132300AF4857 /* mainScreenCustomTableViewCell.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
 				54BFA39D2B9C610D00741E4E /* mainScreenModel.swift in Sources */,
 			);
@@ -295,6 +349,7 @@
 		};
 		5493C9E32B7F60F00021199D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 130376472200ADFD5D5FC6BA /* Pods-cars_game.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -322,6 +377,7 @@
 		};
 		5493C9E42B7F60F00021199D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B36710F9D7AC290ADD10300 /* Pods-cars_game.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
