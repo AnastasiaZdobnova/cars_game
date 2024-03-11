@@ -1,5 +1,5 @@
 //
-//  mainScreenViewController.swift
+//  MainScreenViewController.swift
 //  cars_game
 //
 //  Created by Анастасия Здобнова on 09.03.2024.
@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol MainScreenViewController : UIViewController {
-    var mainPresenter: MainPresenter { get }
+protocol MainScreenViewControllerProtocol : UIViewController {
+    var mainPresenter: MainScreenPresenterProtocol { get }
 }
 
-class mainScreenViewController: UIViewController, MainScreenViewController {
+class MainScreenViewController: UIViewController, MainScreenViewControllerProtocol {
     
-    var mainPresenter: MainPresenter
+    var mainPresenter: MainScreenPresenterProtocol
     var tableView: UITableView?
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class mainScreenViewController: UIViewController, MainScreenViewController {
         setupTableView()
     }
     
-    init(presenter: MainPresenter) {
+    init(presenter: MainScreenPresenterProtocol) {
         self.mainPresenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -37,7 +37,7 @@ class mainScreenViewController: UIViewController, MainScreenViewController {
         tableView = UITableView(frame: .zero, style: .plain)
         tableView?.delegate = self
         tableView?.dataSource = self
-        tableView?.register(mainScreenCustomTableViewCell.self, forCellReuseIdentifier: mainScreenCustomTableViewCell.identifier)
+        tableView?.register(MainScreenCustomTableViewCell.self, forCellReuseIdentifier: MainScreenCustomTableViewCell.identifier)
         tableView?.backgroundColor = .clear
         tableView?.separatorStyle = .none
         tableView?.showsVerticalScrollIndicator = false
@@ -54,19 +54,19 @@ class mainScreenViewController: UIViewController, MainScreenViewController {
     }
 }
 
-extension mainScreenViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainPresenter.getMenuItems().count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: mainScreenCustomTableViewCell.identifier, for: indexPath) as! mainScreenCustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MainScreenCustomTableViewCell.identifier, for: indexPath) as! MainScreenCustomTableViewCell
         cell.backgroundColor = .white // Белый цвет фона ячейки // TODO: вынести отдельно
         cell.menuLabel.text = mainPresenter.getMenuItems()[indexPath.row]
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        mainPresenter.showScreen(number: indexPath.row)
     }
 }

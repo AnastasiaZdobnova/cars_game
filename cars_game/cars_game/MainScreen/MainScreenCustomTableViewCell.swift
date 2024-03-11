@@ -1,5 +1,5 @@
 //
-//  mainScreenCustomTableViewCell.swift
+//  MainScreenCustomTableViewCell.swift
 //  cars_game
 //
 //  Created by Анастасия Здобнова on 11.03.2024.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class mainScreenCustomTableViewCell: UITableViewCell {
+final class MainScreenCustomTableViewCell: UITableViewCell {
     
     static var identifier: String { "\(Self.self)" }
     
