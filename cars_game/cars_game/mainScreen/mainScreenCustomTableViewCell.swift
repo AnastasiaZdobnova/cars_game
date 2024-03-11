@@ -15,15 +15,15 @@ final class mainScreenCustomTableViewCell: UITableViewCell {
     
     var menuLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)
+        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)// TODO: вынести отдельно
         return label
     }()
     
     let contentWhiteView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .lightGray// TODO: вынести отдельно
         view.clipsToBounds = true
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 20// TODO: вынести отдельно
         return view
     }()
     
@@ -38,9 +38,9 @@ final class mainScreenCustomTableViewCell: UITableViewCell {
         
         contentWhiteView.snp.makeConstraints { make in
             
-            make.top.leading.equalTo(contentView).offset(20)
-            make.bottom.right.equalTo(contentView).inset(20)
-            make.height.equalTo(72)
+            make.top.leading.equalTo(contentView).offset(20) // TODO: вынести отдельно
+            make.bottom.right.equalTo(contentView).inset(20)// TODO: вынести отдельно
+            make.height.equalTo(72)// TODO: вынести отдельно
         }
         
         menuLabel.snp.makeConstraints { make in

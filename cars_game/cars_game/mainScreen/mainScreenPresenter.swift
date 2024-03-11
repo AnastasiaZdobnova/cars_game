@@ -10,6 +10,7 @@ import UIKit
 protocol MainPresenter: AnyObject {
     var mainScreenModel : MainModel { get set }
     var mainScreenRouter: MainScreenRouter { get set }
+    func getMenuItems() -> [String]
 }
 
 final class mainScreenPresenter: MainPresenter {
@@ -26,5 +27,9 @@ final class mainScreenPresenter: MainPresenter {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getMenuItems() -> [String] {
+            return mainScreenModel.menuItems
     }
 }

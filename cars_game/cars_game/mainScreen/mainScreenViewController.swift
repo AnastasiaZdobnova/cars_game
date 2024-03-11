@@ -20,7 +20,7 @@ class mainScreenViewController: UIViewController, MainScreenViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .systemBackground // TODO: вынести отдельно
         setupTableView()
     }
     
@@ -47,28 +47,26 @@ class mainScreenViewController: UIViewController, MainScreenViewController {
             view.addSubview(tableView)
             tableView.snp.makeConstraints { make in
                 make.center.equalToSuperview()
-                make.width.equalToSuperview().multipliedBy(0.8)
-                make.height.equalTo(448)
+                make.width.equalToSuperview().multipliedBy(0.8)// TODO: вынести отдельно
+                make.height.equalTo(448) // TODO: Вынести отдельно
             }
         }
     }
 }
 
 extension mainScreenViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return mainPresenter.getMenuItems().count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: mainScreenCustomTableViewCell.identifier, for: indexPath) as! mainScreenCustomTableViewCell
-        cell.backgroundColor = .white // Белый цвет фона ячейки
-        cell.menuLabel.text = "Ячейка \(indexPath.row)"
+        cell.backgroundColor = .white // Белый цвет фона ячейки // TODO: вынести отдельно
+        cell.menuLabel.text = mainPresenter.getMenuItems()[indexPath.row]
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
 }
