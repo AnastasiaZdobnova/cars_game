@@ -10,10 +10,11 @@ import UIKit
 
 protocol GameScreenRouterProtocol {
     static func createModule(navigationController: UINavigationController) -> UIViewController
-    func gameOver ()
+    func gameOver(score: Int)
 }
 
 public class GameScreenRouter: GameScreenRouterProtocol {
+    
     
     var navigationController: UINavigationController?
     
@@ -30,9 +31,9 @@ public class GameScreenRouter: GameScreenRouterProtocol {
         return view
     }
     
-    func gameOver(){
+    func gameOver(score: Int){
         print("gameOver")
-        let viewController = GameOverScreenRouter.createModule(navigationController: self.navigationController!)
+        let viewController = GameOverScreenRouter.createModule(navigationController: self.navigationController!, score: score)
         navigationController?.pushViewController(viewController, animated: false)
     }
 }

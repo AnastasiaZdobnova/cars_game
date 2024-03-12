@@ -17,6 +17,20 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
    
     var gamePresenter: GameScreenPresenterProtocol
     
+    private var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+
+    private let scoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Score: 0"
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        label.textColor = .white
+        return label
+    }()
+    
     private let carImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
@@ -26,6 +40,11 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }()
     
     private func setupGame() {
+        view.addSubview(scoreLabel)
+        scoreLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-10)
+        }
         drawRoad()
         setupCar()
         setupGestureRecognizers()
@@ -53,8 +72,10 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
             car.removeFromSuperview()
         }
         incomingCars.removeAll()
+        score = 0
         setupGame()
     }
+    
     
     func drawRoad() {
         let roadWidth: CGFloat = 200
@@ -157,11 +178,12 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         incomingCars.append(incomingCarImageView)
         
         UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
-            incomingCarImageView.frame.origin.y = self.view.frame.height
-        }) { [weak self] _ in
-            self?.incomingCars.removeAll { $0 === incomingCarImageView }
-            incomingCarImageView.removeFromSuperview()
-        }
+                incomingCarImageView.frame.origin.y = self.view.frame.height
+            }) { [weak self] _ in
+                self?.incomingCars.removeAll { $0 === incomingCarImageView }
+                incomingCarImageView.removeFromSuperview()
+                self?.increaseScore() // Увеличиваем счет
+            }
     }
     
     private func startAddingCars() {
@@ -197,9 +219,14 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         }
         incomingCars.removeAll()
         carTimer?.invalidate()
-        gamePresenter.gameOver()
+        gamePresenter.gameOver(score: self.score)
         // Останавливаем игру или показываем алерт
     }
+    
+    private func increaseScore() {
+        score += 1
+    }
+    
     
     init(presenter: GameScreenPresenterProtocol) {
         self.gamePresenter = presenter

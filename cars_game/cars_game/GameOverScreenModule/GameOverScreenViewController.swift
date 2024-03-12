@@ -11,14 +11,18 @@ import SnapKit
 
 protocol GameOverScreenViewControllerProtocol: UIViewController {
     var gameOverPresenter: GameOverScreenPresenterProtocol { get }
+    func setScore(score: Int)
 }
 
 class GameOverScreenViewController: UIViewController, GameOverScreenViewControllerProtocol {
+    func setScore(score: Int) {
+        scoreLabel.text = "Score: \(score)"
+    }
+    
     var gameOverPresenter: GameOverScreenPresenterProtocol
 
     private let scoreLabel: UILabel = {
         let label = UILabel()
-        label.text = "Score: 5000" // Set your actual score here
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
         return label
