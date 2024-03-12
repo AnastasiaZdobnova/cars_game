@@ -53,6 +53,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     private var incomingCars: [UIImageView] = []
+    private var incomingObstacles: [UIImageView] = []
     private var displayLink: CADisplayLink?
     private var carTimer: Timer?
     
@@ -186,10 +187,51 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
             }
     }
     
+    private func addIncomingObstacles() {
+        let incomingObstaclesImageView = UIImageView(image: UIImage(named: "kust"))
+        incomingObstaclesImageView.contentMode = .scaleAspectFit
+        incomingObstaclesImageView.backgroundColor = .cyan
+        
+        let roadWidth: CGFloat = 200
+        let laneWidth: CGFloat = (view.frame.width - roadWidth) / 2 // ширина обочины
+        let obstaclesWidth: CGFloat = 50
+        let obstaclesHeight: CGFloat = 50
+        
+        
+        let randomLane = Int.random(in: 0...1) // левая или правая обочина
+        var xPos = laneWidth/2 //TODO: переписать
+        switch randomLane{
+        case 0:
+            xPos = laneWidth/2
+        case 1:
+            xPos = view.frame.width - laneWidth/2
+        default:
+            xPos = laneWidth/2
+        }
+        
+        incomingObstaclesImageView.frame = CGRect(
+            x: xPos,
+            y: -100, // TODO: вынести отдельно 
+            width: obstaclesWidth,
+            height: obstaclesHeight
+        )
+        
+        view.addSubview(incomingObstaclesImageView)
+        incomingObstacles.append(incomingObstaclesImageView)
+        
+        UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
+            incomingObstaclesImageView.frame.origin.y = self.view.frame.height
+            }) { [weak self] _ in
+                self?.incomingObstacles.removeAll { $0 === incomingObstaclesImageView }
+                incomingObstaclesImageView.removeFromSuperview()
+            }
+    }
+    
     private func startAddingCars() {
         carTimer?.invalidate() // Останавливаем предыдущий таймер, если он существует
         carTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
             self?.addIncomingCar()
+            self?.addIncomingObstacles()
         }
     }
     
@@ -218,6 +260,12 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
             car.removeFromSuperview()
         }
         incomingCars.removeAll()
+        incomingObstacles.forEach { obstacles in
+            obstacles.layer.removeAllAnimations() // Останавливаем анимацию
+            obstacles.removeFromSuperview()
+        }
+        incomingCars.removeAll()
+        incomingObstacles.removeAll()
         carTimer?.invalidate()
         gamePresenter.gameOver(score: self.score)
         // Останавливаем игру или показываем алерт
