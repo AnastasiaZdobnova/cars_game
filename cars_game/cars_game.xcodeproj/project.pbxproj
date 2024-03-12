@@ -27,6 +27,10 @@
 		54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */; };
 		54B2C8F32B9F2E9A00AF4857 /* RecordsScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */; };
 		54B2C8F52B9F2EA600AF4857 /* RecordsScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */; };
+		54B2C8FA2BA0278800AF4857 /* GameOverScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F92BA0278700AF4857 /* GameOverScreenViewController.swift */; };
+		54B2C8FC2BA027A600AF4857 /* GameOverScreenPresenter .swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */; };
+		54B2C8FE2BA027BC00AF4857 /* GameOverScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */; };
+		54B2C9002BA027D400AF4857 /* GameOverScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */; };
 		54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */; };
 		54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +60,10 @@
 		54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenPresenter.swift; sourceTree = "<group>"; };
 		54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenModel.swift; sourceTree = "<group>"; };
 		54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C8F92BA0278700AF4857 /* GameOverScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenViewController.swift; sourceTree = "<group>"; };
+		54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameOverScreenPresenter .swift"; sourceTree = "<group>"; };
+		54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenModel.swift; sourceTree = "<group>"; };
+		54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenRouter.swift; sourceTree = "<group>"; };
 		54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,18 +101,19 @@
 		5493C9D02B7F60EE0021199D /* cars_game */ = {
 			isa = PBXGroup;
 			children = (
+				54B2C8F82BA0273600AF4857 /* GameOverScreenModule */,
 				5493C9DF2B7F60F00021199D /* Info.plist */,
-				54BFA3992B9C590900741E4E /* MainScreen */,
-				54B2C8DA2B9F2D6500AF4857 /* GameScreen */,
-				54B2C8DB2B9F2D7C00AF4857 /* SettingsScreen */,
-				54B2C8DD2B9F2DA100AF4857 /* RecordsScreen */,
+				54BFA3992B9C590900741E4E /* MainScreenModule */,
+				54B2C8DA2B9F2D6500AF4857 /* GameScreenModule */,
+				54B2C8DB2B9F2D7C00AF4857 /* SettingsScreenModule */,
+				54B2C8DD2B9F2DA100AF4857 /* RecordsScreenModule */,
 				54B2C8F72B9F321C00AF4857 /* Resources */,
 				54B2C8F62B9F320100AF4857 /* Application */,
 			);
 			path = cars_game;
 			sourceTree = "<group>";
 		};
-		54B2C8DA2B9F2D6500AF4857 /* GameScreen */ = {
+		54B2C8DA2B9F2D6500AF4857 /* GameScreenModule */ = {
 			isa = PBXGroup;
 			children = (
 				54B2C8DE2B9F2DC800AF4857 /* GameScreenViewController.swift */,
@@ -112,10 +121,10 @@
 				54B2C8E22B9F2DFE00AF4857 /* GameScreenModel.swift */,
 				54B2C8E42B9F2E0E00AF4857 /* GameScreenRouter.swift */,
 			);
-			path = GameScreen;
+			path = GameScreenModule;
 			sourceTree = "<group>";
 		};
-		54B2C8DB2B9F2D7C00AF4857 /* SettingsScreen */ = {
+		54B2C8DB2B9F2D7C00AF4857 /* SettingsScreenModule */ = {
 			isa = PBXGroup;
 			children = (
 				54B2C8E62B9F2E3300AF4857 /* SettingsScreenViewController.swift */,
@@ -123,10 +132,10 @@
 				54B2C8EA2B9F2E5000AF4857 /* SettingsScreenModel.swift */,
 				54B2C8EC2B9F2E5A00AF4857 /* SettingsScreenRouter.swift */,
 			);
-			path = SettingsScreen;
+			path = SettingsScreenModule;
 			sourceTree = "<group>";
 		};
-		54B2C8DD2B9F2DA100AF4857 /* RecordsScreen */ = {
+		54B2C8DD2B9F2DA100AF4857 /* RecordsScreenModule */ = {
 			isa = PBXGroup;
 			children = (
 				54B2C8EE2B9F2E8500AF4857 /* RecordsScreenViewController.swift */,
@@ -134,7 +143,7 @@
 				54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */,
 				54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */,
 			);
-			path = RecordsScreen;
+			path = RecordsScreenModule;
 			sourceTree = "<group>";
 		};
 		54B2C8F62B9F320100AF4857 /* Application */ = {
@@ -155,7 +164,18 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		54BFA3992B9C590900741E4E /* MainScreen */ = {
+		54B2C8F82BA0273600AF4857 /* GameOverScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C8F92BA0278700AF4857 /* GameOverScreenViewController.swift */,
+				54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */,
+				54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */,
+				54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */,
+			);
+			path = GameOverScreenModule;
+			sourceTree = "<group>";
+		};
+		54BFA3992B9C590900741E4E /* MainScreenModule */ = {
 			isa = PBXGroup;
 			children = (
 				543A86F32B9C57420002D878 /* MainScreenViewController.swift */,
@@ -164,7 +184,7 @@
 				54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */,
 				549B7BC32B9F050C00CD44BC /* MainScreenRouter.swift */,
 			);
-			path = MainScreen;
+			path = MainScreenModule;
 			sourceTree = "<group>";
 		};
 		63EFB0019B26C98B4BE1E678 /* Pods */ = {
@@ -285,20 +305,24 @@
 				54B2C8E32B9F2DFE00AF4857 /* GameScreenModel.swift in Sources */,
 				549B7BC42B9F050C00CD44BC /* MainScreenRouter.swift in Sources */,
 				54B2C8E52B9F2E0E00AF4857 /* GameScreenRouter.swift in Sources */,
+				54B2C8FC2BA027A600AF4857 /* GameOverScreenPresenter .swift in Sources */,
 				54B2C8ED2B9F2E5A00AF4857 /* SettingsScreenRouter.swift in Sources */,
 				54B2C8DF2B9F2DC800AF4857 /* GameScreenViewController.swift in Sources */,
 				54B2C8E72B9F2E3300AF4857 /* SettingsScreenViewController.swift in Sources */,
+				54B2C9002BA027D400AF4857 /* GameOverScreenRouter.swift in Sources */,
 				54B2C8EF2B9F2E8500AF4857 /* RecordsScreenViewController.swift in Sources */,
 				54B2C8EB2B9F2E5000AF4857 /* SettingsScreenModel.swift in Sources */,
 				54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */,
 				5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */,
 				54B2C8D92B9F132300AF4857 /* MainScreenCustomTableViewCell.swift in Sources */,
 				54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */,
+				54B2C8FA2BA0278800AF4857 /* GameOverScreenViewController.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
 				54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */,
 				54B2C8E12B9F2DE800AF4857 /* GameScreenPresenter.swift in Sources */,
 				54B2C8F52B9F2EA600AF4857 /* RecordsScreenRouter.swift in Sources */,
 				54B2C8E92B9F2E4300AF4857 /* SettingsScreenPresenter.swift in Sources */,
+				54B2C8FE2BA027BC00AF4857 /* GameOverScreenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

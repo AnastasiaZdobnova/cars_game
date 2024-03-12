@@ -14,8 +14,9 @@ protocol GameScreenViewControllerProtocol : UIViewController {
 }
 
 class GameScreenViewController: UIViewController, GameScreenViewControllerProtocol {
+   
     var gamePresenter: GameScreenPresenterProtocol
-
+    
     private let carImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
@@ -23,19 +24,36 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-
-    private var incomingCars: [UIImageView] = []
-    private var displayLink: CADisplayLink?
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemPink
-        navigationController?.isNavigationBarHidden = false
+    
+    private func setupGame() {
         drawRoad()
         setupCar()
         setupGestureRecognizers()
         startAddingCars()
         setupDisplayLink()
+    }
+    
+    private var incomingCars: [UIImageView] = []
+    private var displayLink: CADisplayLink?
+    private var carTimer: Timer?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemPink
+        navigationController?.isNavigationBarHidden = true
+        setupGame()
+        print("Я на экране с игрой")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewWillAppear+ cars \(incomingCars)")
+        incomingCars.forEach { car in
+            car.layer.removeAllAnimations() // Останавливаем анимацию
+            car.removeFromSuperview()
+        }
+        incomingCars.removeAll()
+        setupGame()
     }
     
     func drawRoad() {
@@ -61,7 +79,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         let animation = CABasicAnimation(keyPath: "transform.translation.y")
         animation.fromValue = -view.frame.height
         animation.toValue = 0
-        animation.duration = 10
+        animation.duration = 5
         animation.repeatCount = .infinity
         dashedLineLayer.add(animation, forKey: "lineAnimation")
     }
@@ -118,27 +136,27 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         let incomingCarImageView = UIImageView(image: UIImage(named: "megaCar"))
         incomingCarImageView.contentMode = .scaleAspectFit
         incomingCarImageView.backgroundColor = .yellow
-
+        
         let roadWidth: CGFloat = 200
         let laneWidth: CGFloat = roadWidth / 2
         let carWidth: CGFloat = 50
         let carHeight: CGFloat = 100
         
-
+        
         let randomLane = Int.random(in: 0...1)
         let xPos = (view.frame.width - roadWidth) / 2 + (randomLane == 0 ? 0 : laneWidth)
-
+        
         incomingCarImageView.frame = CGRect(
             x: xPos,
             y: -carHeight, // Start above the screen
             width: carWidth,
             height: carHeight
         )
-
+        
         view.addSubview(incomingCarImageView)
         incomingCars.append(incomingCarImageView)
-
-        UIView.animate(withDuration: 10, delay: 0, options: [.curveLinear], animations: {
+        
+        UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
             incomingCarImageView.frame.origin.y = self.view.frame.height
         }) { [weak self] _ in
             self?.incomingCars.removeAll { $0 === incomingCarImageView }
@@ -147,16 +165,17 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     private func startAddingCars() {
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
-                self?.addIncomingCar()
-            }
+        carTimer?.invalidate() // Останавливаем предыдущий таймер, если он существует
+        carTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
+            self?.addIncomingCar()
         }
+    }
     
     private func setupDisplayLink() {
-            displayLink = CADisplayLink(target: self, selector: #selector(step))
-            displayLink?.add(to: .main, forMode: .default)
-        }
-
+        displayLink = CADisplayLink(target: self, selector: #selector(step))
+        displayLink?.add(to: .main, forMode: .default)
+    }
+    
     @objc private func step(displaylink: CADisplayLink) {
         for incomingCar in incomingCars {
             if let presentationFrame = incomingCar.layer.presentation()?.frame {
@@ -167,13 +186,20 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
             }
         }
     }
+    
     private func handleCollision() {
-            print("Столкновение произошло!")
-            displayLink?.invalidate()
-            displayLink = nil
-            
-            // Останавливаем игру или показываем алерт
+        print("Столкновение произошло!")
+        displayLink?.invalidate()
+        displayLink = nil
+        incomingCars.forEach { car in
+            car.layer.removeAllAnimations() // Останавливаем анимацию
+            car.removeFromSuperview()
         }
+        incomingCars.removeAll()
+        carTimer?.invalidate()
+        gamePresenter.gameOver()
+        // Останавливаем игру или показываем алерт
+    }
     
     init(presenter: GameScreenPresenterProtocol) {
         self.gamePresenter = presenter
@@ -184,6 +210,6 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         fatalError("init(coder:) has not been implemented")
     }
     deinit {
-           displayLink?.invalidate()
-       }
+        displayLink?.invalidate()
+    }
 }

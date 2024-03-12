@@ -11,6 +11,7 @@ import UIKit
 protocol GameScreenPresenterProtocol: AnyObject {
     var gameScreenModel : GameScreenModelProtocol { get set }
     var gameScreenRouter: GameScreenRouter { get set }
+    func gameOver()
 }
 
 final class GameScreenPresenter: GameScreenPresenterProtocol {
@@ -27,5 +28,9 @@ final class GameScreenPresenter: GameScreenPresenterProtocol {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func gameOver(){
+        gameScreenRouter.gameOver()
     }
 }
