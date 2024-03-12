@@ -16,7 +16,9 @@ protocol GameOverScreenViewControllerProtocol: UIViewController {
 
 class GameOverScreenViewController: UIViewController, GameOverScreenViewControllerProtocol {
     func setScore(score: Int) {
-        scoreLabel.text = "Score: \(score)"
+        scoreLabel.text = "Game Over \n Score: \(score)"
+        scoreLabel.numberOfLines = 0 // Разрешаем перенос на неограниченное количество строк
+        scoreLabel.lineBreakMode = .byWordWrapping // Перенос по словам
     }
     
     var gameOverPresenter: GameOverScreenPresenterProtocol
@@ -32,6 +34,9 @@ class GameOverScreenViewController: UIViewController, GameOverScreenViewControll
         let button = UIButton(type: .system)
         button.setTitle("Main Menu", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .darkGray
+        button.layer.cornerRadius = 20
         return button
     }()
 
@@ -39,12 +44,15 @@ class GameOverScreenViewController: UIViewController, GameOverScreenViewControll
         let button = UIButton(type: .system)
         button.setTitle("Retry", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .darkGray
+        button.layer.cornerRadius = 20
         return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .systemBrown
         navigationController?.isNavigationBarHidden = true
         setupLayout()
         setupButtonActions()
@@ -57,17 +65,21 @@ class GameOverScreenViewController: UIViewController, GameOverScreenViewControll
 
         scoreLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
         }
 
         mainMenuButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(scoreLabel.snp.bottom).offset(40)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(72)
         }
 
         retryButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(mainMenuButton.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(72)
         }
     }
 

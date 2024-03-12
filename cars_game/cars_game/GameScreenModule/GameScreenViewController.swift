@@ -14,7 +14,7 @@ protocol GameScreenViewControllerProtocol : UIViewController {
 }
 
 class GameScreenViewController: UIViewController, GameScreenViewControllerProtocol {
-   
+    
     var gamePresenter: GameScreenPresenterProtocol
     
     private var score = 0 {
@@ -22,7 +22,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
             scoreLabel.text = "Score: \(score)"
         }
     }
-
+    
     private let scoreLabel: UILabel = {
         let label = UILabel()
         label.text = "Score: 0"
@@ -33,11 +33,31 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     
     private let carImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .blue
+        imageView.backgroundColor = .clear
         imageView.image = UIImage(named: "car")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
+    
+    private var incomingCars: [UIImageView] = []
+    private var incomingObstacles: [UIImageView] = []
+    private var displayLink: CADisplayLink?
+    private var carTimer: Timer?
+    private var obstacleTimer: Timer?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBrown
+        navigationController?.isNavigationBarHidden = true
+        setupGame()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        score = 0
+        setupGame()
+    }
     
     private func setupGame() {
         view.addSubview(scoreLabel)
@@ -49,34 +69,9 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         setupCar()
         setupGestureRecognizers()
         startAddingCars()
+        startObstacleTimer()
         setupDisplayLink()
     }
-    
-    private var incomingCars: [UIImageView] = []
-    private var incomingObstacles: [UIImageView] = []
-    private var displayLink: CADisplayLink?
-    private var carTimer: Timer?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemPink
-        navigationController?.isNavigationBarHidden = true
-        setupGame()
-        print("Я на экране с игрой")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWillAppear+ cars \(incomingCars)")
-        incomingCars.forEach { car in
-            car.layer.removeAllAnimations() // Останавливаем анимацию
-            car.removeFromSuperview()
-        }
-        incomingCars.removeAll()
-        score = 0
-        setupGame()
-    }
-    
     
     func drawRoad() {
         let roadWidth: CGFloat = 200
@@ -134,20 +129,23 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     @objc private func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
         let roadWidth: CGFloat = 200
         let laneWidth: CGFloat = roadWidth / 2
-        let carWidth: CGFloat = 50
         
         switch gesture.direction {
         case .left:
-            if carImageView.frame.minX > (view.frame.width - roadWidth) / 2 {
+            if carImageView.frame.minX > (view.frame.width - roadWidth) / 2 + laneWidth {
                 UIView.animate(withDuration: 0.3) {
                     self.carImageView.frame.origin.x -= laneWidth
                 }
+            } else {
+                handleCollision()
             }
         case .right:
-            if carImageView.frame.maxX < (view.frame.width + roadWidth) / 2 {
+            if carImageView.frame.maxX < (view.frame.width - roadWidth) / 2 + laneWidth {
                 UIView.animate(withDuration: 0.3) {
                     self.carImageView.frame.origin.x += laneWidth
                 }
+            } else {
+                handleCollision()
             }
         default:
             break
@@ -155,9 +153,10 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     private func addIncomingCar() {
-        let incomingCarImageView = UIImageView(image: UIImage(named: "megaCar"))
-        incomingCarImageView.contentMode = .scaleAspectFit
-        incomingCarImageView.backgroundColor = .yellow
+        let incomingCarImageView = UIImageView(image: UIImage(named: "gray_car"))
+        incomingCarImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
+        incomingCarImageView.contentMode = .scaleAspectFill
+        incomingCarImageView.backgroundColor = .clear
         
         let roadWidth: CGFloat = 200
         let laneWidth: CGFloat = roadWidth / 2
@@ -166,11 +165,11 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         
         
         let randomLane = Int.random(in: 0...1)
-        let xPos = (view.frame.width - roadWidth) / 2 + (randomLane == 0 ? 0 : laneWidth)
+        let xPos = (view.frame.width - roadWidth) / 2 + (randomLane == 0 ? laneWidth/2-carWidth/2 : laneWidth + laneWidth/2-carWidth/2)
         
         incomingCarImageView.frame = CGRect(
             x: xPos,
-            y: -carHeight, // Start above the screen
+            y: -carHeight,
             width: carWidth,
             height: carHeight
         )
@@ -179,18 +178,18 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         incomingCars.append(incomingCarImageView)
         
         UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
-                incomingCarImageView.frame.origin.y = self.view.frame.height
-            }) { [weak self] _ in
-                self?.incomingCars.removeAll { $0 === incomingCarImageView }
-                incomingCarImageView.removeFromSuperview()
-                self?.increaseScore() // Увеличиваем счет
-            }
+            incomingCarImageView.frame.origin.y = self.view.frame.height
+        }) { [weak self] _ in
+            self?.incomingCars.removeAll { $0 === incomingCarImageView }
+            incomingCarImageView.removeFromSuperview()
+            self?.increaseScore()
+        }
     }
     
     private func addIncomingObstacles() {
         let incomingObstaclesImageView = UIImageView(image: UIImage(named: "kust"))
-        incomingObstaclesImageView.contentMode = .scaleAspectFit
-        incomingObstaclesImageView.backgroundColor = .cyan
+        incomingObstaclesImageView.contentMode = .scaleAspectFill
+        incomingObstaclesImageView.backgroundColor = .clear
         
         let roadWidth: CGFloat = 200
         let laneWidth: CGFloat = (view.frame.width - roadWidth) / 2 // ширина обочины
@@ -199,19 +198,11 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         
         
         let randomLane = Int.random(in: 0...1) // левая или правая обочина
-        var xPos = laneWidth/2 //TODO: переписать
-        switch randomLane{
-        case 0:
-            xPos = laneWidth/2
-        case 1:
-            xPos = view.frame.width - laneWidth/2
-        default:
-            xPos = laneWidth/2
-        }
+        let xPos = randomLane == 0 ? laneWidth/2 - obstaclesWidth/2 : view.frame.width - laneWidth/2 - obstaclesWidth/2
         
         incomingObstaclesImageView.frame = CGRect(
             x: xPos,
-            y: -100, // TODO: вынести отдельно 
+            y: -100, // TODO: вынести отдельно
             width: obstaclesWidth,
             height: obstaclesHeight
         )
@@ -221,16 +212,23 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         
         UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
             incomingObstaclesImageView.frame.origin.y = self.view.frame.height
-            }) { [weak self] _ in
-                self?.incomingObstacles.removeAll { $0 === incomingObstaclesImageView }
-                incomingObstaclesImageView.removeFromSuperview()
-            }
+        }) { [weak self] _ in
+            self?.incomingObstacles.removeAll { $0 === incomingObstaclesImageView }
+            incomingObstaclesImageView.removeFromSuperview()
+        }
     }
     
     private func startAddingCars() {
         carTimer?.invalidate() // Останавливаем предыдущий таймер, если он существует
         carTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
             self?.addIncomingCar()
+            self?.addIncomingObstacles()
+        }
+    }
+    
+    private func startObstacleTimer() {
+        obstacleTimer?.invalidate()
+        obstacleTimer = Timer.scheduledTimer(withTimeInterval: Double.random(in: 1...3), repeats: true) { [weak self] timer in
             self?.addIncomingObstacles()
         }
     }
@@ -252,7 +250,6 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     private func handleCollision() {
-        print("Столкновение произошло!")
         displayLink?.invalidate()
         displayLink = nil
         incomingCars.forEach { car in
@@ -267,8 +264,8 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         incomingCars.removeAll()
         incomingObstacles.removeAll()
         carTimer?.invalidate()
+        obstacleTimer?.invalidate()
         gamePresenter.gameOver(score: self.score)
-        // Останавливаем игру или показываем алерт
     }
     
     private func increaseScore() {
