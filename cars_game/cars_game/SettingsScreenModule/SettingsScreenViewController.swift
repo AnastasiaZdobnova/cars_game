@@ -28,6 +28,8 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         setupColorSelectionCollectionView()
         setupTypeOfObstaclesLabel()
         setupObstaclesSelectionCollectionView()
+        setupDifficultyLabel()
+        setupDifficultySelectionCollectionView()
     }
     
     private let avatarImageView: UIImageView = {
@@ -82,6 +84,18 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     private var obstaclesSelectionCollectionView: UICollectionView!
     private var selectedObstaclesIndex = 1
     private let obstaclesArray = ["kust", "car", "kust"]
+    
+    private let difficultyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Difficulty"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.textColor = .black
+        return label
+    }()
+    
+    private var difficultyCollectionView: UICollectionView!
+    private var selectedDifficultyIndex = 2
+    private let difficultyArray = ["easy", "medium", "hard"]
     
     func setupAvatarImageView(){
         view.addSubview(avatarImageView)
@@ -178,6 +192,34 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         }
     }
     
+    func setupDifficultyLabel(){
+        view.addSubview(difficultyLabel)
+        difficultyLabel.snp.makeConstraints { make in
+            make.top.equalTo(obstaclesSelectionCollectionView.snp.bottom).offset(35)
+            make.leading.equalTo(avatarImageView)
+        }
+    }
+    
+    func setupDifficultySelectionCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 100)
+        
+        difficultyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        difficultyCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        difficultyCollectionView.dataSource = self
+        difficultyCollectionView.delegate = self
+        difficultyCollectionView.backgroundColor = AppColors.backgroundAppColor
+        
+        view.addSubview(difficultyCollectionView)
+        difficultyCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(difficultyLabel.snp.bottom).offset(10)
+            make.leading.equalTo(difficultyLabel)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
+    }
+    
     init(presenter: SettingsScreenPresenterProtocol) {
         self.settingsPresenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -222,11 +264,22 @@ extension SettingsScreenViewController: UICollectionViewDataSource {
             cell.layer.cornerRadius = 20
         case obstaclesSelectionCollectionView:
             let imageView = UIImageView(frame: cell.contentView.bounds)
-                imageView.contentMode = .scaleAspectFill
-                imageView.clipsToBounds = true
-                imageView.image = UIImage(named: obstaclesArray[indexPath.item])
-                cell.contentView.addSubview(imageView)
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.image = UIImage(named: obstaclesArray[indexPath.item])
+            cell.contentView.addSubview(imageView)
             cell.layer.borderWidth = selectedObstaclesIndex == indexPath.item ? 3 : 0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 20
+        case difficultyCollectionView:
+            cell.backgroundColor = .lightGray
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: 20))
+            label.text = difficultyArray[indexPath.item]
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 14)
+            label.textColor = .black
+            cell.contentView.addSubview(label)
+            cell.layer.borderWidth = selectedDifficultyIndex == indexPath.item ? 3 : 0
             cell.layer.borderColor = UIColor.black.cgColor
             cell.layer.cornerRadius = 20
         default:
@@ -246,7 +299,11 @@ extension SettingsScreenViewController: UICollectionViewDelegate {
             collectionView.reloadData() // Перезагрузите коллекцию, чтобы обновить внешний вид ячеек
         case obstaclesSelectionCollectionView:
             selectedObstaclesIndex = indexPath.item // Сохраните выбранный индекс
-            print("Выбрали 2 \(selectedColorIndex)")
+            print("Выбрали 2 \(selectedObstaclesIndex)")
+            collectionView.reloadData() // Перезагрузите коллекцию, чтобы обновить внешний вид ячеек
+        case difficultyCollectionView:
+            selectedDifficultyIndex = indexPath.item // Сохраните выбранный индекс
+            print("Выбрали 3 \(selectedDifficultyIndex)")
             collectionView.reloadData() // Перезагрузите коллекцию, чтобы обновить внешний вид ячеек
         default:
             print("Error didSelectItemAt collectionView")
