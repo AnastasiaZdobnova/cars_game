@@ -26,6 +26,8 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         setupNameTextField()
         setupCarsColorLabel()
         setupColorSelectionCollectionView()
+        setupTypeOfObstaclesLabel()
+        setupObstaclesSelectionCollectionView()
     }
     
     private let avatarImageView: UIImageView = {
@@ -42,7 +44,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         label.textColor = .black
         return label
     }()
@@ -51,7 +53,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         let textField = UITextField()
         textField.placeholder = "SuperUser"
         textField.borderStyle = .roundedRect
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        textField.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         textField.textColor = .white
         textField.backgroundColor = .clear
         return textField
@@ -60,7 +62,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     private let carsColorLabel: UILabel = {
         let label = UILabel()
         label.text = "Cars color"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         label.textColor = .black
         return label
     }()
@@ -68,6 +70,18 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     private var colorSelectionCollectionView: UICollectionView!
     private var selectedColorIndex = 1
     private let colorsArray = [AppColors.redCar, AppColors.blueCar, AppColors.greenCar]
+    
+    private let typeOfObstaclesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Type of obstacles"
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.textColor = .black
+        return label
+    }()
+    
+    private var obstaclesSelectionCollectionView: UICollectionView!
+    private var selectedObstaclesIndex = 1
+    private let obstaclesArray = ["kust", "car", "kust"]
     
     func setupAvatarImageView(){
         view.addSubview(avatarImageView)
@@ -108,8 +122,6 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         nameTextField.delegate = self
     }
     
-    
-    
     private func setupCarsColorLabel(){
         view.addSubview(carsColorLabel)
         carsColorLabel.snp.makeConstraints { make in
@@ -133,6 +145,34 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         colorSelectionCollectionView.snp.makeConstraints { make in
             make.top.equalTo(carsColorLabel.snp.bottom).offset(10)
             make.leading.equalTo(carsColorLabel)
+            make.trailing.equalToSuperview()
+            make.height.equalTo(100)
+        }
+    }
+    
+    func setupTypeOfObstaclesLabel(){
+        view.addSubview(typeOfObstaclesLabel)
+        typeOfObstaclesLabel.snp.makeConstraints { make in
+            make.top.equalTo(colorSelectionCollectionView.snp.bottom).offset(35)
+            make.leading.equalTo(avatarImageView)
+        }
+    }
+    
+    func setupObstaclesSelectionCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: 100)
+        
+        obstaclesSelectionCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        obstaclesSelectionCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        obstaclesSelectionCollectionView.dataSource = self
+        obstaclesSelectionCollectionView.delegate = self
+        obstaclesSelectionCollectionView.backgroundColor = AppColors.backgroundAppColor
+        
+        view.addSubview(obstaclesSelectionCollectionView)
+        obstaclesSelectionCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(typeOfObstaclesLabel.snp.bottom).offset(10)
+            make.leading.equalTo(typeOfObstaclesLabel)
             make.trailing.equalToSuperview()
             make.height.equalTo(100)
         }
@@ -173,19 +213,44 @@ extension SettingsScreenViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = colorsArray[indexPath.item] // Замените на настройку фона каждой ячейки своим цветом
-        cell.layer.borderWidth = selectedColorIndex == indexPath.item ? 3 : 0
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.cornerRadius = 20
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        switch collectionView{
+        case colorSelectionCollectionView:
+            cell.backgroundColor = colorsArray[indexPath.item]
+            cell.layer.borderWidth = selectedColorIndex == indexPath.item ? 3 : 0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 20
+        case obstaclesSelectionCollectionView:
+            let imageView = UIImageView(frame: cell.contentView.bounds)
+                imageView.contentMode = .scaleAspectFill
+                imageView.clipsToBounds = true
+                imageView.image = UIImage(named: obstaclesArray[indexPath.item])
+                cell.contentView.addSubview(imageView)
+            cell.layer.borderWidth = selectedObstaclesIndex == indexPath.item ? 3 : 0
+            cell.layer.borderColor = UIColor.black.cgColor
+            cell.layer.cornerRadius = 20
+        default:
+            print("Error cell")
+        }
+        
         return cell
     }
 }
 
 extension SettingsScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedColorIndex = indexPath.item // Сохраните выбранный индекс
-        print("Выбрали \(selectedColorIndex)")
-        collectionView.reloadData() // Перезагрузите коллекцию, чтобы обновить внешний вид ячеек
+        switch collectionView{
+        case colorSelectionCollectionView:
+            selectedColorIndex = indexPath.item // Сохраните выбранный индекс
+            print("Выбрали 1 \(selectedColorIndex)")
+            collectionView.reloadData() // Перезагрузите коллекцию, чтобы обновить внешний вид ячеек
+        case obstaclesSelectionCollectionView:
+            selectedObstaclesIndex = indexPath.item // Сохраните выбранный индекс
+            print("Выбрали 2 \(selectedColorIndex)")
+            collectionView.reloadData() // Перезагрузите коллекцию, чтобы обновить внешний вид ячеек
+        default:
+            print("Error didSelectItemAt collectionView")
+        }
     }
 }
 
