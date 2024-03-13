@@ -16,12 +16,13 @@ final class MainScreenCustomTableViewCell: UITableViewCell {
     var menuLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)// TODO: вынести отдельно
+        label.textColor = .white
         return label
     }()
     
     let contentWhiteView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray// TODO: вынести отдельно
+        view.backgroundColor = .darkGray// TODO: вынести отдельно
         view.clipsToBounds = true
         view.layer.cornerRadius = 20// TODO: вынести отдельно
         return view
@@ -30,7 +31,7 @@ final class MainScreenCustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        
+        contentView.backgroundColor = .systemBrown
         [contentWhiteView, menuLabel].forEach {
             contentView.addSubview($0)
         }

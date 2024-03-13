@@ -21,21 +21,21 @@ public class MainScreenRouter: MainScreenRouterProtocol {
     var navigationController: UINavigationController?
     
     public static func createModule(navigationController: UINavigationController) -> UIViewController {
-            let router = MainScreenRouter()
-            router.navigationController = navigationController // Устанавливаем navigationController
-            let model = MainScreenModel()
-            let presenter = MainScreenPresenter(model: model, router: router)
-            let view = MainScreenViewController(presenter: presenter)
-
-            model.mainScreenPresenter = presenter
-            presenter.mainViewController = view
-
-            return view
-        }
+        let router = MainScreenRouter()
+        router.navigationController = navigationController // Устанавливаем navigationController
+        let model = MainScreenModel()
+        let presenter = MainScreenPresenter(model: model, router: router)
+        let view = MainScreenViewController(presenter: presenter)
+        
+        model.mainScreenPresenter = presenter
+        presenter.mainViewController = view
+        
+        return view
+    }
     
     func showGameScreen(){
         print(1)
-        let viewController = GameScreenRouter.createModule()
+        let viewController = GameScreenRouter.createModule(navigationController: self.navigationController!)
         navigationController?.pushViewController(viewController, animated: true)
     }
     

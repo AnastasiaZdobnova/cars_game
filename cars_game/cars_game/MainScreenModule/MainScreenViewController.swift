@@ -20,7 +20,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground // TODO: вынести отдельно
+        view.backgroundColor = .systemBrown // TODO: вынести отдельно
         setupTableView()
     }
     
@@ -38,7 +38,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.register(MainScreenCustomTableViewCell.self, forCellReuseIdentifier: MainScreenCustomTableViewCell.identifier)
-        tableView?.backgroundColor = .clear
+        tableView?.backgroundColor = .yellow
         tableView?.separatorStyle = .none
         tableView?.showsVerticalScrollIndicator = false
         tableView?.contentInsetAdjustmentBehavior = .never
@@ -48,7 +48,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
             tableView.snp.makeConstraints { make in
                 make.center.equalToSuperview()
                 make.width.equalToSuperview().multipliedBy(0.8)// TODO: вынести отдельно
-                make.height.equalTo(448) // TODO: Вынести отдельно
+                make.height.equalTo(112*3) // TODO: Вынести отдельно
             }
         }
     }
@@ -61,7 +61,6 @@ extension MainScreenViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainScreenCustomTableViewCell.identifier, for: indexPath) as! MainScreenCustomTableViewCell
-        cell.backgroundColor = .white // Белый цвет фона ячейки // TODO: вынести отдельно
         cell.menuLabel.text = mainPresenter.getMenuItems()[indexPath.row]
         return cell
     }
