@@ -31,6 +31,7 @@
 		54B2C8FC2BA027A600AF4857 /* GameOverScreenPresenter .swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */; };
 		54B2C8FE2BA027BC00AF4857 /* GameOverScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */; };
 		54B2C9002BA027D400AF4857 /* GameOverScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */; };
+		54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9022BA1D87F00AF4857 /* AppColors.swift */; };
 		54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */; };
 		54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameOverScreenPresenter .swift"; sourceTree = "<group>"; };
 		54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenModel.swift; sourceTree = "<group>"; };
 		54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C9022BA1D87F00AF4857 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,7 @@
 		5493C9D02B7F60EE0021199D /* cars_game */ = {
 			isa = PBXGroup;
 			children = (
+				54B2C9012BA1D86100AF4857 /* Common_UI */,
 				54B2C8F82BA0273600AF4857 /* GameOverScreenModule */,
 				5493C9DF2B7F60F00021199D /* Info.plist */,
 				54BFA3992B9C590900741E4E /* MainScreenModule */,
@@ -173,6 +176,14 @@
 				54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */,
 			);
 			path = GameOverScreenModule;
+			sourceTree = "<group>";
+		};
+		54B2C9012BA1D86100AF4857 /* Common_UI */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C9022BA1D87F00AF4857 /* AppColors.swift */,
+			);
+			path = Common_UI;
 			sourceTree = "<group>";
 		};
 		54BFA3992B9C590900741E4E /* MainScreenModule */ = {
@@ -317,6 +328,7 @@
 				54B2C8D92B9F132300AF4857 /* MainScreenCustomTableViewCell.swift in Sources */,
 				54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */,
 				54B2C8FA2BA0278800AF4857 /* GameOverScreenViewController.swift in Sources */,
+				54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
 				54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */,
 				54B2C8E12B9F2DE800AF4857 /* GameScreenPresenter.swift in Sources */,

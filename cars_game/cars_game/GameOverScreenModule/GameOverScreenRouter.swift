@@ -34,7 +34,6 @@ public class GameOverScreenRouter: GameOverScreenRouterProtocol {
     }
     
     func goToMainMenu(){
-        print(navigationController)
         navigationController?.popToRootViewController(animated: true)
     }
     

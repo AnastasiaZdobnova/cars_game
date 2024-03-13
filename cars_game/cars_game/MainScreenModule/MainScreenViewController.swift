@@ -20,7 +20,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBrown // TODO: вынести отдельно
+        view.backgroundColor = AppColors.backgroundAppColor 
         setupTableView()
     }
     
@@ -38,7 +38,6 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.register(MainScreenCustomTableViewCell.self, forCellReuseIdentifier: MainScreenCustomTableViewCell.identifier)
-        tableView?.backgroundColor = .yellow
         tableView?.separatorStyle = .none
         tableView?.showsVerticalScrollIndicator = false
         tableView?.contentInsetAdjustmentBehavior = .never
