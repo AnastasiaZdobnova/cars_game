@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    public var currentUser: Player?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -39,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(initialSettings)
                 UserDefaults.standard.set(data, forKey: "settings")
+                initializeLeaderboardIfNeeded()
             } catch {
                 print("Error initializing settings: \(error)")
             }
@@ -52,6 +53,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return true
         }
         return false
+    }
+    
+    func initializeLeaderboardIfNeeded() {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+       // if !launchedBefore {
+            // Создаем список лидеров с тремя игроками
+            currentUser = Player(id: 79, name: "SuperUser", score: 0, date: Date())
+            let defaultPlayers = [
+                Player(id: 1, name: "Player1", score: 20, date: Date()),
+                Player(id: 2, name: "Player2", score: 10, date: Date()),
+                currentUser
+            ]
+            print(defaultPlayers)
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(defaultPlayers)
+                UserDefaults.standard.set(data, forKey: "leaderboard")
+            } catch {
+                print("Error initializing leaderboard: \(error)")
+            }
+        //}
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

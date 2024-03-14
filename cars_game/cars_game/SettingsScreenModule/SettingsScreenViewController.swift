@@ -400,8 +400,38 @@ extension SettingsScreenViewController: UICollectionViewDataSource {
         } catch {
             print("Error saving settings: \(error)")
         }
+        updateCurrentUser(name: nameTextField.text ?? "", userId: 79, image: avatarImageView.image?.jpegData(compressionQuality: 0.8))
     }
     
+    func updateCurrentUser(name: String, userId: Int, image: Data?) {
+        var leaderboard = loadLeaderboard()
+        if let index = leaderboard.firstIndex(where: { $0.id == userId }) {
+            if name != leaderboard[index].name {
+                leaderboard[index].name = name
+                
+            }
+            leaderboard[index].avatarImageData = image
+            saveLeaderboard(leaderboard)
+        }
+    }
+
+    func loadLeaderboard() -> [Player] {
+        if let data = UserDefaults.standard.data(forKey: "leaderboard"),
+           let leaderboard = try? JSONDecoder().decode([Player].self, from: data) {
+            return leaderboard
+        }
+        return []
+    }
+
+    func saveLeaderboard(_ leaderboard: [Player]) {
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(leaderboard)
+            UserDefaults.standard.set(data, forKey: "leaderboard")
+        } catch {
+            print("Error saving leaderboard: \(error)")
+        }
+    }
     @objc func saveSettingsButtonTapped() {
         saveSettings()
         printSettings()
