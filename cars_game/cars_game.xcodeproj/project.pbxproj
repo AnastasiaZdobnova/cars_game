@@ -33,6 +33,8 @@
 		54B2C9002BA027D400AF4857 /* GameOverScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */; };
 		54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9022BA1D87F00AF4857 /* AppColors.swift */; };
 		54B2C9072BA2E4F200AF4857 /* SructSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9062BA2E4F200AF4857 /* SructSettings.swift */; };
+		54B2C9092BA2FC7200AF4857 /* StructPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */; };
+		54B2C90B2BA305CE00AF4857 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */; };
 		54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */; };
 		54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */; };
 /* End PBXBuildFile section */
@@ -68,6 +70,8 @@
 		54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenRouter.swift; sourceTree = "<group>"; };
 		54B2C9022BA1D87F00AF4857 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		54B2C9062BA2E4F200AF4857 /* SructSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SructSettings.swift; sourceTree = "<group>"; };
+		54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructPlayer.swift; sourceTree = "<group>"; };
+		54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +119,7 @@
 				54B2C8F72B9F321C00AF4857 /* Resources */,
 				54B2C8F62B9F320100AF4857 /* Application */,
 				54B2C9062BA2E4F200AF4857 /* SructSettings.swift */,
+				54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */,
 			);
 			path = cars_game;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */,
 				54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */,
 				54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */,
+				54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */,
 			);
 			path = RecordsScreenModule;
 			sourceTree = "<group>";
@@ -331,7 +337,9 @@
 				5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */,
 				54B2C8D92B9F132300AF4857 /* MainScreenCustomTableViewCell.swift in Sources */,
 				54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */,
+				54B2C9092BA2FC7200AF4857 /* StructPlayer.swift in Sources */,
 				54B2C8FA2BA0278800AF4857 /* GameOverScreenViewController.swift in Sources */,
+				54B2C90B2BA305CE00AF4857 /* LeaderboardCell.swift in Sources */,
 				54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
 				54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */,
