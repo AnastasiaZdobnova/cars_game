@@ -16,13 +16,13 @@ final class MainScreenCustomTableViewCell: UITableViewCell {
     var menuLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)// TODO: вынести отдельно
-        label.textColor = .white
+        label.textColor = AppColors.buttonTextAppColor
         return label
     }()
     
     let contentWhiteView: UIView = {
         let view = UIView()
-        view.backgroundColor = .darkGray// TODO: вынести отдельно
+        view.backgroundColor = AppColors.buttonAppColor
         view.clipsToBounds = true
         view.layer.cornerRadius = 20// TODO: вынести отдельно
         return view
