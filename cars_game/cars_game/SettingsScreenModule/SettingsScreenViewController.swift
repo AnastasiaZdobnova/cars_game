@@ -16,11 +16,15 @@ protocol SettingsScreenViewControllerProtocol : UIViewController {
 class SettingsScreenViewController: UIViewController, SettingsScreenViewControllerProtocol {
     
     var settingsPresenter: SettingsScreenPresenterProtocol
+    private var scrollView: UIScrollView!
+    private var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppColors.backgroundAppColor
         navigationController?.isNavigationBarHidden = false
+        setupScrollView()
+        setupContentView()
         setupAvatarImageView()
         setupNameLabel()
         setupNameTextField()
@@ -30,6 +34,58 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         setupObstaclesSelectionCollectionView()
         setupDifficultyLabel()
         setupDifficultySelectionCollectionView()
+        setupSaveSettingsButton()
+        loadSettings()
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = AppColors.backgroundAppColor // Задайте желаемый цвет фона
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    }
+    
+    private func setupScrollView() {
+        scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+    private func setupContentView() {
+        contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+        ])
+    }
+    
+    func loadSettings() {
+        if let data = UserDefaults.standard.data(forKey: "settings"),
+           let settings = try? JSONDecoder().decode(Settings.self, from: data) {
+            // Загружаем настройки
+            nameTextField.text = settings.userName
+            selectedColorIndex = settings.carColorIndex
+            selectedObstaclesIndex = settings.obstacleTypeIndex
+            selectedDifficultyIndex = settings.difficultyIndex
+            colorSelectionCollectionView.reloadData()
+            obstaclesSelectionCollectionView.reloadData()
+            difficultyCollectionView.reloadData()
+
+            // Загружаем изображение аватара
+            if let avatarImageData = UserDefaults.standard.data(forKey: "avatarImageData") {
+                avatarImageView.image = UIImage(data: avatarImageData)
+            }
+        }
     }
     
     private let avatarImageView: UIImageView = {
@@ -71,7 +127,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     
     private var colorSelectionCollectionView: UICollectionView!
     private var selectedColorIndex = 1
-    private let colorsArray = [AppColors.redCar, AppColors.blueCar, AppColors.greenCar]
+    private let colorsArray = [AppColors.redCar, AppColors.brownCar, AppColors.yellowCar]
     
     private let typeOfObstaclesLabel: UILabel = {
         let label = UILabel()
@@ -83,7 +139,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     
     private var obstaclesSelectionCollectionView: UICollectionView!
     private var selectedObstaclesIndex = 1
-    private let obstaclesArray = ["kust", "car", "kust"]
+    private let obstaclesArray = ["kust", "palm", "tree"]
     
     private let difficultyLabel: UILabel = {
         let label = UILabel()
@@ -97,11 +153,21 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     private var selectedDifficultyIndex = 2
     private let difficultyArray = ["easy", "medium", "hard"]
     
+    private let saveSettingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Save Settings", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        button.backgroundColor = AppColors.buttonAppColor
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 20
+        return button
+    }()
+    
     func setupAvatarImageView(){
-        view.addSubview(avatarImageView)
+        contentView.addSubview(avatarImageView)
         avatarImageView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
+            make.top.equalTo(contentView.snp.top).offset(20)
+            make.left.equalTo(contentView.snp.left).offset(20)
             make.width.height.equalTo(100)
         }
         
@@ -118,15 +184,15 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     }
     
     private func setupNameLabel(){
-        view.addSubview(nameLabel)
+        contentView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(36)
+            make.top.equalTo(contentView.snp.top).offset(36)
             make.leading.equalTo(avatarImageView.snp.trailing).offset(26)
         }
     }
     
     private func setupNameTextField() {
-        view.addSubview(nameTextField)
+        contentView.addSubview(nameTextField)
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(7)
             make.leading.equalTo(nameLabel.snp.leading)
@@ -137,7 +203,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     }
     
     private func setupCarsColorLabel(){
-        view.addSubview(carsColorLabel)
+        contentView.addSubview(carsColorLabel)
         carsColorLabel.snp.makeConstraints { make in
             make.top.equalTo(avatarImageView.snp.bottom).offset(35)
             make.leading.equalTo(avatarImageView)
@@ -155,7 +221,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         colorSelectionCollectionView.delegate = self
         colorSelectionCollectionView.backgroundColor = AppColors.backgroundAppColor
         
-        view.addSubview(colorSelectionCollectionView)
+        contentView.addSubview(colorSelectionCollectionView)
         colorSelectionCollectionView.snp.makeConstraints { make in
             make.top.equalTo(carsColorLabel.snp.bottom).offset(10)
             make.leading.equalTo(carsColorLabel)
@@ -165,7 +231,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     }
     
     func setupTypeOfObstaclesLabel(){
-        view.addSubview(typeOfObstaclesLabel)
+        contentView.addSubview(typeOfObstaclesLabel)
         typeOfObstaclesLabel.snp.makeConstraints { make in
             make.top.equalTo(colorSelectionCollectionView.snp.bottom).offset(35)
             make.leading.equalTo(avatarImageView)
@@ -183,7 +249,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         obstaclesSelectionCollectionView.delegate = self
         obstaclesSelectionCollectionView.backgroundColor = AppColors.backgroundAppColor
         
-        view.addSubview(obstaclesSelectionCollectionView)
+        contentView.addSubview(obstaclesSelectionCollectionView)
         obstaclesSelectionCollectionView.snp.makeConstraints { make in
             make.top.equalTo(typeOfObstaclesLabel.snp.bottom).offset(10)
             make.leading.equalTo(typeOfObstaclesLabel)
@@ -193,7 +259,7 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
     }
     
     func setupDifficultyLabel(){
-        view.addSubview(difficultyLabel)
+        contentView.addSubview(difficultyLabel)
         difficultyLabel.snp.makeConstraints { make in
             make.top.equalTo(obstaclesSelectionCollectionView.snp.bottom).offset(35)
             make.leading.equalTo(avatarImageView)
@@ -211,12 +277,34 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
         difficultyCollectionView.delegate = self
         difficultyCollectionView.backgroundColor = AppColors.backgroundAppColor
         
-        view.addSubview(difficultyCollectionView)
+        contentView.addSubview(difficultyCollectionView)
         difficultyCollectionView.snp.makeConstraints { make in
             make.top.equalTo(difficultyLabel.snp.bottom).offset(10)
             make.leading.equalTo(difficultyLabel)
             make.trailing.equalToSuperview()
             make.height.equalTo(100)
+        }
+    }
+    
+    private func setupSaveSettingsButton() {
+        contentView.addSubview(saveSettingsButton)
+        saveSettingsButton.snp.makeConstraints { make in
+            make.top.equalTo(difficultyCollectionView.snp.bottom).offset(45)
+            make.centerX.equalTo(contentView)
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+            make.bottom.lessThanOrEqualTo(contentView).inset(20) // Дополнительно: добавьте нижний отступ, чтобы обеспечить прокрутку до кнопки
+        }
+        saveSettingsButton.addTarget(self, action: #selector(saveSettingsButtonTapped), for: .touchUpInside)
+    }
+    
+    func printSettings() {
+        if let data = UserDefaults.standard.data(forKey: "settings"),
+           let settings = try? JSONDecoder().decode(Settings.self, from: data) {
+            print("User Name: \(settings.userName)")
+            print("Car Color Index: \(settings.carColorIndex)")
+            print("Obstacle Type Index: \(settings.obstacleTypeIndex)")
+            print("Difficulty Index: \(settings.difficultyIndex)")
         }
     }
     
@@ -234,8 +322,16 @@ extension SettingsScreenViewController: UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[.editedImage] as? UIImage {
             avatarImageView.image = editedImage
+            // Сохраняем изображение в формате Data
+            if let imageData = editedImage.jpegData(compressionQuality: 0.8) {
+                UserDefaults.standard.set(imageData, forKey: "avatarImageData")
+            }
         } else if let originalImage = info[.originalImage] as? UIImage {
             avatarImageView.image = originalImage
+            // Сохраняем изображение в формате Data
+            if let imageData = originalImage.jpegData(compressionQuality: 0.8) {
+                UserDefaults.standard.set(imageData, forKey: "avatarImageData")
+            }
         }
         dismiss(animated: true)
     }
@@ -287,6 +383,28 @@ extension SettingsScreenViewController: UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    func saveSettings() {
+        let settings = Settings(
+            userName: nameTextField.text ?? "",
+            carColorIndex: selectedColorIndex,
+            obstacleTypeIndex: selectedObstaclesIndex,
+            difficultyIndex: selectedDifficultyIndex,
+            avatarImageData: avatarImageView.image?.jpegData(compressionQuality: 0.8)
+        )
+        do {
+            let encoder = JSONEncoder()
+            let data = try encoder.encode(settings)
+            UserDefaults.standard.set(data, forKey: "settings")
+        } catch {
+            print("Error saving settings: \(error)")
+        }
+    }
+    
+    @objc func saveSettingsButtonTapped() {
+        saveSettings()
+        printSettings()
     }
 }
 

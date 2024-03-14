@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-
+        initializeSettingsIfNeeded() // Инициализация настроек при первом запуске
         let window = UIWindow(windowScene: windowScene)
         let navigationController = UINavigationController()
         navigationController.isNavigationBarHidden = true
@@ -25,6 +25,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
+    }
+    
+    func initializeSettingsIfNeeded() {
+        if isFirstLaunch() {
+            let initialSettings = Settings(
+                userName: "SuperUser",
+                carColorIndex: 1,
+                obstacleTypeIndex: 1,
+                difficultyIndex: 1
+            )
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(initialSettings)
+                UserDefaults.standard.set(data, forKey: "settings")
+            } catch {
+                print("Error initializing settings: \(error)")
+            }
+        }
+    }
+    
+    func isFirstLaunch() -> Bool {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if !launchedBefore {
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            return true
+        }
+        return false
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

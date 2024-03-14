@@ -34,7 +34,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     private let carImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .clear
-        imageView.image = UIImage(named: "car")
+        imageView.image = UIImage(named: "brown_car")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -58,8 +58,23 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         score = 0
         setupGame()
     }
-    
+    private var incomingObstacleType: String = "kust"
+    private var animationDuration: TimeInterval = 5
     private func setupGame() {
+        
+        if let settings = loadSettings() {
+            // Настройка машины
+            let carColors = [UIImage(named: "red_car"), UIImage(named: "brown_car"), UIImage(named: "yellow_car")]
+            carImageView.image = carColors[settings.carColorIndex]
+            
+            // Настройка препятствий
+            let obstacleTypes = ["kust", "palm", "tree"]
+            incomingObstacleType = obstacleTypes[settings.obstacleTypeIndex]
+            
+            // Настройка сложности (скорости анимации)
+            animationDuration = settings.difficultyIndex == 0 ? 5 : settings.difficultyIndex == 1 ? 4 : 3
+        }
+        
         view.addSubview(scoreLabel)
         scoreLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
@@ -96,7 +111,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         let animation = CABasicAnimation(keyPath: "transform.translation.y")
         animation.fromValue = -view.frame.height
         animation.toValue = 0
-        animation.duration = 5
+        animation.duration = animationDuration
         animation.repeatCount = .infinity
         dashedLineLayer.add(animation, forKey: "lineAnimation")
     }
@@ -177,7 +192,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         view.addSubview(incomingCarImageView)
         incomingCars.append(incomingCarImageView)
         
-        UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveLinear], animations: {
             incomingCarImageView.frame.origin.y = self.view.frame.height
         }) { [weak self] _ in
             self?.incomingCars.removeAll { $0 === incomingCarImageView }
@@ -187,7 +202,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     private func addIncomingObstacles() {
-        let incomingObstaclesImageView = UIImageView(image: UIImage(named: "kust"))
+        let incomingObstaclesImageView = UIImageView(image: UIImage(named: incomingObstacleType))
         incomingObstaclesImageView.contentMode = .scaleAspectFill
         incomingObstaclesImageView.backgroundColor = .clear
         
@@ -210,7 +225,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         view.addSubview(incomingObstaclesImageView)
         incomingObstacles.append(incomingObstaclesImageView)
         
-        UIView.animate(withDuration: 5, delay: 0, options: [.curveLinear], animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveLinear], animations: {
             incomingObstaclesImageView.frame.origin.y = self.view.frame.height
         }) { [weak self] _ in
             self?.incomingObstacles.removeAll { $0 === incomingObstaclesImageView }
@@ -270,6 +285,13 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     
     private func increaseScore() {
         score += 1
+    }
+    
+    func loadSettings() -> Settings? {
+        if let data = UserDefaults.standard.data(forKey: "settings") {
+            return try? JSONDecoder().decode(Settings.self, from: data)
+        }
+        return nil
     }
     
     

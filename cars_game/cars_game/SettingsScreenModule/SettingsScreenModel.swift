@@ -13,5 +13,5 @@ protocol SettingsScreenModelProtocol: AnyObject {
 final class SettingsScreenModel: SettingsScreenModelProtocol {
     
     weak var settingsScreenPresenter: SettingsScreenPresenterProtocol?
-    
+     
 }

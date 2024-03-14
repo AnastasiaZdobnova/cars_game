@@ -14,6 +14,6 @@ struct AppColors {
     static let buttonTextAppColor = UIColor.white
     static let defaultAvatarImageAppColor = UIColor.darkGray
     static let redCar = UIColor.red
-    static let blueCar = UIColor.blue
-    static let greenCar = UIColor.green
+    static let yellowCar = UIColor.yellow
+    static let brownCar = UIColor.brown
 }
