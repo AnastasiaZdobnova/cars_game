@@ -15,7 +15,7 @@ final class MainScreenCustomTableViewCell: UITableViewCell {
     
     var menuLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.semibold)// TODO: вынести отдельно
+        label.font = FontConstants.labelFont
         label.textColor = AppColors.buttonTextAppColor
         return label
     }()
@@ -24,14 +24,14 @@ final class MainScreenCustomTableViewCell: UITableViewCell {
         let view = UIView()
         view.backgroundColor = AppColors.buttonAppColor
         view.clipsToBounds = true
-        view.layer.cornerRadius = 20// TODO: вынести отдельно
+        view.layer.cornerRadius = LayoutConstants.standartCornerRadius
         return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        contentView.backgroundColor = .systemBrown
+        contentView.backgroundColor = AppColors.backgroundAppColor
         [contentWhiteView, menuLabel].forEach {
             contentView.addSubview($0)
         }
@@ -39,9 +39,9 @@ final class MainScreenCustomTableViewCell: UITableViewCell {
         
         contentWhiteView.snp.makeConstraints { make in
             
-            make.top.leading.equalTo(contentView).offset(20) // TODO: вынести отдельно
-            make.bottom.right.equalTo(contentView).inset(20)// TODO: вынести отдельно
-            make.height.equalTo(72)// TODO: вынести отдельно
+            make.top.leading.equalTo(contentView).offset(LayoutConstants.standardMargin)
+            make.bottom.right.equalTo(contentView).inset(LayoutConstants.standardMargin)
+            make.height.equalTo(LayoutConstants.MainScreen.cellContentHeight)
         }
         
         menuLabel.snp.makeConstraints { make in

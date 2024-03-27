@@ -34,19 +34,16 @@ public class MainScreenRouter: MainScreenRouterProtocol {
     }
     
     func showGameScreen(){
-        print(1)
         let viewController = GameScreenRouter.createModule(navigationController: self.navigationController!)
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     func showSettingScreen(){
-        print(2)
         let viewController = SettingsScreenRouter.createModule()
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     func showRecordsScreen(){
-        print(3)
         let viewController = RecordsScreenRouter.createModule()
         navigationController?.pushViewController(viewController, animated: true)
     }

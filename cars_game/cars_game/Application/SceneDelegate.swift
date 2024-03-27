@@ -65,7 +65,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 Player(id: 2, name: "Player2", score: 10, date: Date()),
                 currentUser
             ]
-            print(defaultPlayers)
             do {
                 let encoder = JSONEncoder()
                 let data = try encoder.encode(defaultPlayers)

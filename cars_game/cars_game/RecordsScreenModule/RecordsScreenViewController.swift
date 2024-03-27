@@ -17,13 +17,20 @@ class RecordsScreenViewController: UIViewController, UITableViewDataSource, UITa
     var recordsPresenter: RecordsScreenPresenterProtocol
     var leaderboard: [Player] = []
     var tableView: UITableView!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false 
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = AppColors.backgroundAppColor
         navigationController?.isNavigationBarHidden = false
-
-        // Инициализация и настройка tableView
+        setupTableView()
+        leaderboard = recordsPresenter.loadLeaderboard()
+    }
+    
+    private func setupTableView() {
         tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
@@ -32,9 +39,6 @@ class RecordsScreenViewController: UIViewController, UITableViewDataSource, UITa
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        // Загрузка данных
-        leaderboard = loadLeaderboard()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,18 +53,6 @@ class RecordsScreenViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
 
-    func loadLeaderboard() -> [Player] {
-        print("53")
-        if let data = UserDefaults.standard.data(forKey: "leaderboard"),
-           var leaderboard = try? JSONDecoder().decode([Player].self, from: data) {
-            // Сортировка по количеству очков в порядке убывания
-            leaderboard.sort(by: { $0.score > $1.score })
-            print("55\(leaderboard)")
-            return leaderboard
-        }
-        return []
-    }
-
     init(presenter: RecordsScreenPresenterProtocol) {
         self.recordsPresenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -71,6 +63,6 @@ class RecordsScreenViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80 // Высота вашей ячейки
+        return LayoutConstants.Records.heightForRow
     }
 }

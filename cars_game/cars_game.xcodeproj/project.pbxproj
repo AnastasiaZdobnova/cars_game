@@ -37,6 +37,8 @@
 		54B2C90B2BA305CE00AF4857 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */; };
 		54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */; };
 		54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */; };
+		54E3E82C2BB3FBBB0088922A /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3E82B2BB3FBBB0088922A /* LayoutConstants.swift */; };
+		54E3E8302BB420C10088922A /* FontConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3E82F2BB420C00088922A /* FontConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +76,8 @@
 		54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
 		54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
 		54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
+		54E3E82B2BB3FBBB0088922A /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+		54E3E82F2BB420C00088922A /* FontConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		5493C9D02B7F60EE0021199D /* cars_game */ = {
 			isa = PBXGroup;
 			children = (
+				54E3E82E2BB400CD0088922A /* Sctruct */,
 				54B2C9012BA1D86100AF4857 /* Common_UI */,
 				54B2C8F82BA0273600AF4857 /* GameOverScreenModule */,
 				5493C9DF2B7F60F00021199D /* Info.plist */,
@@ -118,8 +123,6 @@
 				54B2C8DD2B9F2DA100AF4857 /* RecordsScreenModule */,
 				54B2C8F72B9F321C00AF4857 /* Resources */,
 				54B2C8F62B9F320100AF4857 /* Application */,
-				54B2C9062BA2E4F200AF4857 /* SructSettings.swift */,
-				54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */,
 			);
 			path = cars_game;
 			sourceTree = "<group>";
@@ -149,11 +152,11 @@
 		54B2C8DD2B9F2DA100AF4857 /* RecordsScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				54E3E82D2BB3FD850088922A /* Cell */,
 				54B2C8EE2B9F2E8500AF4857 /* RecordsScreenViewController.swift */,
 				54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */,
 				54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */,
 				54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */,
-				54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */,
 			);
 			path = RecordsScreenModule;
 			sourceTree = "<group>";
@@ -191,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				54B2C9022BA1D87F00AF4857 /* AppColors.swift */,
+				54E3E82B2BB3FBBB0088922A /* LayoutConstants.swift */,
+				54E3E82F2BB420C00088922A /* FontConstants.swift */,
 			);
 			path = Common_UI;
 			sourceTree = "<group>";
@@ -198,13 +203,38 @@
 		54BFA3992B9C590900741E4E /* MainScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				54E3E82A2BB3FB190088922A /* Cell */,
 				543A86F32B9C57420002D878 /* MainScreenViewController.swift */,
-				54B2C8D82B9F132300AF4857 /* MainScreenCustomTableViewCell.swift */,
 				54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */,
 				54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */,
 				549B7BC32B9F050C00CD44BC /* MainScreenRouter.swift */,
 			);
 			path = MainScreenModule;
+			sourceTree = "<group>";
+		};
+		54E3E82A2BB3FB190088922A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C8D82B9F132300AF4857 /* MainScreenCustomTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		54E3E82D2BB3FD850088922A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		54E3E82E2BB400CD0088922A /* Sctruct */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C9062BA2E4F200AF4857 /* SructSettings.swift */,
+				54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */,
+			);
+			path = Sctruct;
 			sourceTree = "<group>";
 		};
 		63EFB0019B26C98B4BE1E678 /* Pods */ = {
@@ -335,6 +365,7 @@
 				54B2C8EB2B9F2E5000AF4857 /* SettingsScreenModel.swift in Sources */,
 				54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */,
 				5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */,
+				54E3E82C2BB3FBBB0088922A /* LayoutConstants.swift in Sources */,
 				54B2C8D92B9F132300AF4857 /* MainScreenCustomTableViewCell.swift in Sources */,
 				54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */,
 				54B2C9092BA2FC7200AF4857 /* StructPlayer.swift in Sources */,
@@ -343,6 +374,7 @@
 				54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
 				54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */,
+				54E3E8302BB420C10088922A /* FontConstants.swift in Sources */,
 				54B2C8E12B9F2DE800AF4857 /* GameScreenPresenter.swift in Sources */,
 				54B2C8F52B9F2EA600AF4857 /* RecordsScreenRouter.swift in Sources */,
 				54B2C8E92B9F2E4300AF4857 /* SettingsScreenPresenter.swift in Sources */,

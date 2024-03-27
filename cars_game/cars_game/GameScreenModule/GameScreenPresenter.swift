@@ -30,37 +30,8 @@ final class GameScreenPresenter: GameScreenPresenterProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func gameOver(score: Int){
-        
+    func gameOver(score: Int) {
+        gameScreenModel.updateCurrentUserScore(newScore: score, userId: 79)
         gameScreenRouter.gameOver(score: score)
-        updateCurrentUserScore(newScore: score, userId: 79)
     }
-    func updateCurrentUserScore(newScore: Int, userId: Int) {
-        var leaderboard = loadLeaderboard()
-        if let index = leaderboard.firstIndex(where: { $0.id == userId }) {
-            if newScore > leaderboard[index].score {
-                leaderboard[index].score = newScore
-                saveLeaderboard(leaderboard)
-            }
-        }
-    }
-
-    func loadLeaderboard() -> [Player] {
-        if let data = UserDefaults.standard.data(forKey: "leaderboard"),
-           let leaderboard = try? JSONDecoder().decode([Player].self, from: data) {
-            return leaderboard
-        }
-        return []
-    }
-
-    func saveLeaderboard(_ leaderboard: [Player]) {
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(leaderboard)
-            UserDefaults.standard.set(data, forKey: "leaderboard")
-        } catch {
-            print("Error saving leaderboard: \(error)")
-        }
-    }
-
 }

@@ -12,6 +12,7 @@ import UIKit
 protocol RecordsScreenPresenterProtocol: AnyObject {
     var recordsScreenModel : RecordsScreenModelProtocol { get set }
     var recordsScreenRouter: RecordsScreenRouter { get set }
+    func loadLeaderboard() -> [Player]
 }
 
 final class RecordsScreenPresenter: RecordsScreenPresenterProtocol {
@@ -28,5 +29,14 @@ final class RecordsScreenPresenter: RecordsScreenPresenterProtocol {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadLeaderboard() -> [Player] {
+        if let data = UserDefaults.standard.data(forKey: "leaderboard"),
+           var leaderboard = try? JSONDecoder().decode([Player].self, from: data) {
+            leaderboard.sort(by: { $0.score > $1.score })
+            return leaderboard
+        }
+        return []
     }
 }

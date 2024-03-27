@@ -15,7 +15,6 @@ protocol GameScreenRouterProtocol {
 
 public class GameScreenRouter: GameScreenRouterProtocol {
     
-    
     var navigationController: UINavigationController?
     
     public static func createModule(navigationController: UINavigationController) -> UIViewController {
@@ -32,7 +31,6 @@ public class GameScreenRouter: GameScreenRouterProtocol {
     }
     
     func gameOver(score: Int){
-        print("gameOver")
         let viewController = GameOverScreenRouter.createModule(navigationController: self.navigationController!, score: score)
         navigationController?.pushViewController(viewController, animated: false)
     }

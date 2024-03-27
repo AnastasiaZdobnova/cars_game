@@ -16,7 +16,6 @@ protocol GameOverScreenRouterProtocol {
 
 public class GameOverScreenRouter: GameOverScreenRouterProtocol {
     
-    
     var navigationController: UINavigationController?
     
     public static func createModule(navigationController: UINavigationController, score: Int) -> UIViewController {

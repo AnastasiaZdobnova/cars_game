@@ -14,29 +14,29 @@ class LeaderboardCell: UITableViewCell {
     let playerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 25 // Половина высоты ячейки
+        imageView.layer.cornerRadius = LayoutConstants.Records.imageCornerRadius
         imageView.clipsToBounds = true
         return imageView
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        label.textColor = .black
+        label.font = FontConstants.labelFont
+        label.textColor = AppColors.textColor
         return label
     }()
     
     let scoreLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        label.textColor = .gray
+        label.font = FontConstants.labelFont
+        label.textColor = AppColors.textColor
         return label
     }()
     
     let dateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textColor = .lightGray
+        label.font = FontConstants.labelFont
+        label.textColor = AppColors.textColor
         return label
     }()
     
@@ -56,23 +56,23 @@ class LeaderboardCell: UITableViewCell {
         addSubview(dateLabel)
         
         playerImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(LayoutConstants.standardMargin)
             make.centerY.equalToSuperview()
-            make.width.height.equalTo(50)
+            make.width.height.equalTo(LayoutConstants.Records.avatarImageViewWidth)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(playerImageView.snp.trailing).offset(16)
-            make.top.equalToSuperview().offset(10)
+            make.leading.equalTo(playerImageView.snp.trailing).offset(LayoutConstants.standardMargin)
+            make.top.equalToSuperview().offset(LayoutConstants.standardMargin)
         }
         
         scoreLabel.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel)
-            make.top.equalTo(nameLabel.snp.bottom).offset(5)
+            make.top.equalTo(nameLabel.snp.bottom).offset(LayoutConstants.standardMargin)
         }
         
         dateLabel.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview().inset(LayoutConstants.standardMargin)
             make.centerY.equalToSuperview()
         }
     }

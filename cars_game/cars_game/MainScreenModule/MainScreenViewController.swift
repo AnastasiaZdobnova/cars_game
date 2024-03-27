@@ -16,7 +16,12 @@ protocol MainScreenViewControllerProtocol : UIViewController {
 class MainScreenViewController: UIViewController, MainScreenViewControllerProtocol {
     
     var mainPresenter: MainScreenPresenterProtocol
-    var tableView: UITableView?
+    private var tableView: UITableView?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +38,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupTableView() {
+    private func setupTableView() {
         tableView = UITableView(frame: .zero, style: .plain)
         tableView?.delegate = self
         tableView?.dataSource = self
@@ -46,8 +51,8 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
             view.addSubview(tableView)
             tableView.snp.makeConstraints { make in
                 make.center.equalToSuperview()
-                make.width.equalToSuperview().multipliedBy(0.8)// TODO: вынести отдельно
-                make.height.equalTo(112*3) // TODO: Вынести отдельно
+                make.width.equalTo(LayoutConstants.MainScreen.tableViewWidth)
+                make.height.equalTo(LayoutConstants.MainScreen.tableViewHeight)
             }
         }
     }

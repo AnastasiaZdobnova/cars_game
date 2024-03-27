@@ -26,8 +26,8 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     private let scoreLabel: UILabel = {
         let label = UILabel()
         label.text = "Score: 0"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .white
+        label.font = FontConstants.labelFont
+        label.textColor = AppColors.scoreColor
         return label
     }()
     
@@ -45,10 +45,16 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     private var displayLink: CADisplayLink?
     private var carTimer: Timer?
     private var obstacleTimer: Timer?
+    private var incomingObstacleType: String = "kust"
+    private var animationDuration: TimeInterval = 5
+    private let roadWidth: CGFloat = LayoutConstants.GameScreen.roadWidth
+    private let laneWidth: CGFloat = LayoutConstants.GameScreen.roadWidth / 2
+    private let carWidth: CGFloat = LayoutConstants.GameScreen.carWidth
+    private let carHeight: CGFloat = LayoutConstants.GameScreen.carHeight
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBrown
+        view.backgroundColor = AppColors.gameBackgroundColor
         navigationController?.isNavigationBarHidden = true
         setupGame()
     }
@@ -58,27 +64,24 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         score = 0
         setupGame()
     }
-    private var incomingObstacleType: String = "kust"
-    private var animationDuration: TimeInterval = 5
+    
     private func setupGame() {
         
         if let settings = loadSettings() {
-            // Настройка машины
+
             let carColors = [UIImage(named: "red_car"), UIImage(named: "brown_car"), UIImage(named: "yellow_car")]
             carImageView.image = carColors[settings.carColorIndex]
             
-            // Настройка препятствий
             let obstacleTypes = ["kust", "palm", "tree"]
             incomingObstacleType = obstacleTypes[settings.obstacleTypeIndex]
             
-            // Настройка сложности (скорости анимации)
             animationDuration = settings.difficultyIndex == 0 ? 5 : settings.difficultyIndex == 1 ? 4 : 3
         }
         
         view.addSubview(scoreLabel)
         scoreLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-10)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(LayoutConstants.standardMargin)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).inset(LayoutConstants.standardMargin)
         }
         drawRoad()
         setupCar()
@@ -89,19 +92,17 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     func drawRoad() {
-        let roadWidth: CGFloat = 200
-        let laneWidth: CGFloat = roadWidth / 2
-        let dashedLineLength: CGFloat = 10
-        let dashedLineSpacing: CGFloat = 10
+        let dashedLineLength: CGFloat = LayoutConstants.GameScreen.dashedLineLength
+        let dashedLineSpacing: CGFloat = LayoutConstants.GameScreen.dashedLineSpacing
         
         let roadLayer = CAShapeLayer()
         roadLayer.frame = CGRect(x: (view.frame.width - roadWidth) / 2, y: 0, width: roadWidth, height: view.frame.height)
-        roadLayer.backgroundColor = UIColor.darkGray.cgColor
+        roadLayer.backgroundColor = AppColors.roadColor.cgColor
         view.layer.addSublayer(roadLayer)
         
         let dashedLineLayer = CAShapeLayer()
-        dashedLineLayer.strokeColor = UIColor.white.cgColor
-        dashedLineLayer.lineWidth = 2
+        dashedLineLayer.strokeColor = AppColors.dashedLineColor.cgColor
+        dashedLineLayer.lineWidth = LayoutConstants.GameScreen.dashedLineWidth
         dashedLineLayer.lineDashPattern = [NSNumber(value: Float(dashedLineLength)), NSNumber(value: Float(dashedLineSpacing))]
         let path = CGMutablePath()
         path.addLines(between: [CGPoint(x: laneWidth, y: -view.frame.height), CGPoint(x: laneWidth, y: 2 * view.frame.height)])
@@ -118,17 +119,12 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     
     private func setupCar() {
         view.addSubview(carImageView)
-        let roadWidth: CGFloat = 200
-        let laneWidth: CGFloat = roadWidth / 2
-        let carWidth: CGFloat = 50
-        let carHeight: CGFloat = 100
         carImageView.frame = CGRect(
             x: (view.frame.width + laneWidth - carWidth) / 2,
             y: view.frame.height - carHeight - 20,
             width: carWidth,
             height: carHeight
         )
-        
     }
     
     private func setupGestureRecognizers() {
@@ -142,14 +138,12 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
     }
     
     @objc private func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-        let roadWidth: CGFloat = 200
-        let laneWidth: CGFloat = roadWidth / 2
         
         switch gesture.direction {
         case .left:
             if carImageView.frame.minX > (view.frame.width - roadWidth) / 2 + laneWidth {
                 UIView.animate(withDuration: 0.3) {
-                    self.carImageView.frame.origin.x -= laneWidth
+                    self.carImageView.frame.origin.x -= self.laneWidth
                 }
             } else {
                 handleCollision()
@@ -157,7 +151,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         case .right:
             if carImageView.frame.maxX < (view.frame.width - roadWidth) / 2 + laneWidth {
                 UIView.animate(withDuration: 0.3) {
-                    self.carImageView.frame.origin.x += laneWidth
+                    self.carImageView.frame.origin.x += self.laneWidth
                 }
             } else {
                 handleCollision()
@@ -172,13 +166,7 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         incomingCarImageView.transform = CGAffineTransform(scaleX: 1, y: -1)
         incomingCarImageView.contentMode = .scaleAspectFill
         incomingCarImageView.backgroundColor = .clear
-        
-        let roadWidth: CGFloat = 200
-        let laneWidth: CGFloat = roadWidth / 2
-        let carWidth: CGFloat = 50
-        let carHeight: CGFloat = 100
-        
-        
+    
         let randomLane = Int.random(in: 0...1)
         let xPos = (view.frame.width - roadWidth) / 2 + (randomLane == 0 ? laneWidth/2-carWidth/2 : laneWidth + laneWidth/2-carWidth/2)
         
@@ -206,18 +194,17 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         incomingObstaclesImageView.contentMode = .scaleAspectFill
         incomingObstaclesImageView.backgroundColor = .clear
         
-        let roadWidth: CGFloat = 200
-        let laneWidth: CGFloat = (view.frame.width - roadWidth) / 2 // ширина обочины
+        let roadside: CGFloat = (view.frame.width - roadWidth) / 2 // ширина обочины
         let obstaclesWidth: CGFloat = 50
         let obstaclesHeight: CGFloat = 50
         
         
         let randomLane = Int.random(in: 0...1) // левая или правая обочина
-        let xPos = randomLane == 0 ? laneWidth/2 - obstaclesWidth/2 : view.frame.width - laneWidth/2 - obstaclesWidth/2
+        let xPos = randomLane == 0 ? roadside/2 - obstaclesWidth/2 : view.frame.width - roadside/2 - obstaclesWidth/2
         
         incomingObstaclesImageView.frame = CGRect(
             x: xPos,
-            y: -100, // TODO: вынести отдельно
+            y: -100,
             width: obstaclesWidth,
             height: obstaclesHeight
         )
@@ -293,7 +280,6 @@ class GameScreenViewController: UIViewController, GameScreenViewControllerProtoc
         }
         return nil
     }
-    
     
     init(presenter: GameScreenPresenterProtocol) {
         self.gamePresenter = presenter
