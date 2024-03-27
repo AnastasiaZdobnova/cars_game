@@ -239,8 +239,8 @@ class SettingsScreenViewController: UIViewController, SettingsScreenViewControll
             obstaclesSelectionCollectionView.reloadData()
             difficultyCollectionView.reloadData()
 
-            if let avatarImageData = UserDefaults.standard.data(forKey: "avatarImageData") {
-                avatarImageView.image = UIImage(data: avatarImageData)
+            if let avatarImageData = settingsPresenter.loadImage() {
+                avatarImageView.image = avatarImageData
             }
         }
     }
@@ -323,16 +323,13 @@ extension SettingsScreenViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
-    func saveSettings() {
-        settingsPresenter.saveSettings(userName: nameTextField.text ?? "", carColorIndex: selectedColorIndex, obstacleTypeIndex: selectedObstaclesIndex, difficultyIndex: selectedDifficultyIndex, avatarImageData: avatarImageView.image?.jpegData(compressionQuality: 0.8))
-        
-        settingsPresenter.updateCurrentUser(name: nameTextField.text ?? "", userId: 79, image: avatarImageView.image?.jpegData(compressionQuality: 0.8))
-    }
 
     
     @objc func saveSettingsButtonTapped() {
-        saveSettings()
+        
+        settingsPresenter.saveSettings(userName: nameTextField.text ?? "", carColorIndex: selectedColorIndex, obstacleTypeIndex: selectedObstaclesIndex, difficultyIndex: selectedDifficultyIndex, avatarImageData: avatarImageView.image ?? UIImage(named: "avatar")!)
+        
+        settingsPresenter.updateCurrentUser(name: nameTextField.text ?? "", userId: 79, image: avatarImageView.image ?? UIImage(named: "avatar")!)
         navigationController?.popToRootViewController(animated: true)
     }
 }

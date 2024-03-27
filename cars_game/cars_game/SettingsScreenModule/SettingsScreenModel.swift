@@ -6,23 +6,25 @@
 //
 
 import Foundation
+import UIKit
 
 protocol SettingsScreenModelProtocol: AnyObject {
-    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: Data?)
-    func updateCurrentUser(name: String, userId: Int, image: Data?)
+    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: UIImage)
+    func updateCurrentUser(name: String, userId: Int, image: UIImage)
 }
 
 final class SettingsScreenModel: SettingsScreenModelProtocol {
     
     weak var settingsScreenPresenter: SettingsScreenPresenterProtocol?
-     
-    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: Data?) {
+    
+    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: UIImage) {
+        let image = try? saveImage(avatarImageData)
         let settings = Settings(
             userName: userName,
             carColorIndex: carColorIndex,
             obstacleTypeIndex: obstacleTypeIndex,
             difficultyIndex: difficultyIndex,
-            avatarImageData: avatarImageData)
+            avatarImageData: try? saveImage(avatarImageData))
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(settings)
@@ -32,16 +34,30 @@ final class SettingsScreenModel: SettingsScreenModelProtocol {
         }
     }
     
-    func updateCurrentUser(name: String, userId: Int, image: Data?) {
+    func updateCurrentUser(name: String, userId: Int, image: UIImage) {
         var leaderboard = loadLeaderboard()
         if let index = leaderboard.firstIndex(where: { $0.id == userId }) {
             if name != leaderboard[index].name {
                 leaderboard[index].name = name
                 
             }
-            leaderboard[index].avatarImageData = image
+            leaderboard[index].avatarImageData = try? saveImage(image)
             saveLeaderboard(leaderboard)
         }
+    }
+    
+    private func saveImage(_ image: UIImage) throws -> String? {
+        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+              let data = image.jpegData(compressionQuality: 1.0) else { return nil }
+        let name = "image"
+        let url = directory.appendingPathComponent(name)
+        
+        if FileManager.default.fileExists(atPath: url.path) {
+            try FileManager.default.removeItem(atPath: url.path)
+        }
+        
+        try data.write(to: url)
+        return name
     }
     
     private func saveLeaderboard(_ leaderboard: [Player]) {

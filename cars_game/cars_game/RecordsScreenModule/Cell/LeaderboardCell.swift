@@ -79,11 +79,10 @@ class LeaderboardCell: UITableViewCell {
     
     func configure(with player: Player) {
         if let imageData = player.avatarImageData {
-            playerImageView.image = UIImage(data: imageData)
+            playerImageView.image = loadImage(by: imageData)
         } else {
             playerImageView.image = UIImage(named: "avatar")
         }
-
 
         nameLabel.text = player.name
         scoreLabel.text = "Score: \(player.score)"
@@ -91,6 +90,14 @@ class LeaderboardCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         dateLabel.text = dateFormatter.string(from: player.date)
+    }
+    
+    private func loadImage(by name: String) -> UIImage? {
+        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        let url = directory.appendingPathComponent(name)
+        return UIImage(contentsOfFile: url.path)
     }
 }
 
