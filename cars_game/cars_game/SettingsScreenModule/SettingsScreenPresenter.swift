@@ -11,8 +11,9 @@ import UIKit
 protocol SettingsScreenPresenterProtocol: AnyObject {
     var settingsScreenModel : SettingsScreenModelProtocol { get set }
     var settingsScreenRouter: SettingsScreenRouter { get set }
-    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: Data?)
-    func updateCurrentUser(name: String, userId: Int, image: Data?)
+    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: UIImage)
+    func updateCurrentUser(name: String, userId: Int, image: UIImage) 
+    func loadImage() -> UIImage? 
 }
 
 final class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
@@ -31,11 +32,19 @@ final class SettingsScreenPresenter: SettingsScreenPresenterProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: Data?) {
+    func saveSettings(userName: String, carColorIndex: Int, obstacleTypeIndex: Int, difficultyIndex: Int, avatarImageData: UIImage) {
         settingsScreenModel.saveSettings(userName: userName, carColorIndex: carColorIndex, obstacleTypeIndex: obstacleTypeIndex, difficultyIndex: difficultyIndex, avatarImageData: avatarImageData)
     }
     
-    func updateCurrentUser(name: String, userId: Int, image: Data?) {
+    func updateCurrentUser(name: String, userId: Int, image: UIImage) {
         settingsScreenModel.updateCurrentUser(name: name, userId: userId, image: image)
+    }
+    
+    func loadImage() -> UIImage? {
+        guard let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        let url = directory.appendingPathComponent("image")
+        return UIImage(contentsOfFile: url.path)
     }
 }

@@ -12,5 +12,5 @@ public struct Settings: Codable {
     var carColorIndex: Int
     var obstacleTypeIndex: Int
     var difficultyIndex: Int
-    var avatarImageData: Data?
+    var avatarImageData: String?
 }
