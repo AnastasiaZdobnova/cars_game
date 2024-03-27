@@ -1,0 +1,6 @@
+module Pods_cars_game {
+  umbrella header "Pods-cars_game-umbrella.h"
+
+  export *
+  module * { export * }
+}

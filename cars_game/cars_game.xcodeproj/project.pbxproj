@@ -7,23 +7,77 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07486966DB30D65997B7F195 /* libPods-cars_game.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA826CF61DF3815358668CA /* libPods-cars_game.a */; };
+		543A86F42B9C57420002D878 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A86F32B9C57420002D878 /* MainScreenViewController.swift */; };
 		5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D12B7F60EE0021199D /* AppDelegate.swift */; };
 		5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D32B7F60EE0021199D /* SceneDelegate.swift */; };
-		5493C9D62B7F60EE0021199D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5493C9D52B7F60EE0021199D /* ViewController.swift */; };
-		5493C9D92B7F60EE0021199D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9D72B7F60EE0021199D /* Main.storyboard */; };
 		5493C9DB2B7F60F00021199D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9DA2B7F60F00021199D /* Assets.xcassets */; };
 		5493C9DE2B7F60F00021199D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */; };
+		549B7BC42B9F050C00CD44BC /* MainScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549B7BC32B9F050C00CD44BC /* MainScreenRouter.swift */; };
+		54B2C8D92B9F132300AF4857 /* MainScreenCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8D82B9F132300AF4857 /* MainScreenCustomTableViewCell.swift */; };
+		54B2C8DF2B9F2DC800AF4857 /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8DE2B9F2DC800AF4857 /* GameScreenViewController.swift */; };
+		54B2C8E12B9F2DE800AF4857 /* GameScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8E02B9F2DE800AF4857 /* GameScreenPresenter.swift */; };
+		54B2C8E32B9F2DFE00AF4857 /* GameScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8E22B9F2DFE00AF4857 /* GameScreenModel.swift */; };
+		54B2C8E52B9F2E0E00AF4857 /* GameScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8E42B9F2E0E00AF4857 /* GameScreenRouter.swift */; };
+		54B2C8E72B9F2E3300AF4857 /* SettingsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8E62B9F2E3300AF4857 /* SettingsScreenViewController.swift */; };
+		54B2C8E92B9F2E4300AF4857 /* SettingsScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8E82B9F2E4300AF4857 /* SettingsScreenPresenter.swift */; };
+		54B2C8EB2B9F2E5000AF4857 /* SettingsScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8EA2B9F2E5000AF4857 /* SettingsScreenModel.swift */; };
+		54B2C8ED2B9F2E5A00AF4857 /* SettingsScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8EC2B9F2E5A00AF4857 /* SettingsScreenRouter.swift */; };
+		54B2C8EF2B9F2E8500AF4857 /* RecordsScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8EE2B9F2E8500AF4857 /* RecordsScreenViewController.swift */; };
+		54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */; };
+		54B2C8F32B9F2E9A00AF4857 /* RecordsScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */; };
+		54B2C8F52B9F2EA600AF4857 /* RecordsScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */; };
+		54B2C8FA2BA0278800AF4857 /* GameOverScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8F92BA0278700AF4857 /* GameOverScreenViewController.swift */; };
+		54B2C8FC2BA027A600AF4857 /* GameOverScreenPresenter .swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */; };
+		54B2C8FE2BA027BC00AF4857 /* GameOverScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */; };
+		54B2C9002BA027D400AF4857 /* GameOverScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */; };
+		54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9022BA1D87F00AF4857 /* AppColors.swift */; };
+		54B2C9072BA2E4F200AF4857 /* SructSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9062BA2E4F200AF4857 /* SructSettings.swift */; };
+		54B2C9092BA2FC7200AF4857 /* StructPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */; };
+		54B2C90B2BA305CE00AF4857 /* LeaderboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */; };
+		54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */; };
+		54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */; };
+		54E3E82C2BB3FBBB0088922A /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3E82B2BB3FBBB0088922A /* LayoutConstants.swift */; };
+		54E3E8302BB420C10088922A /* FontConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E3E82F2BB420C00088922A /* FontConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		130376472200ADFD5D5FC6BA /* Pods-cars_game.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cars_game.debug.xcconfig"; path = "Target Support Files/Pods-cars_game/Pods-cars_game.debug.xcconfig"; sourceTree = "<group>"; };
+		2B36710F9D7AC290ADD10300 /* Pods-cars_game.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cars_game.release.xcconfig"; path = "Target Support Files/Pods-cars_game/Pods-cars_game.release.xcconfig"; sourceTree = "<group>"; };
+		4EA826CF61DF3815358668CA /* libPods-cars_game.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cars_game.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		543A86F32B9C57420002D878 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		5493C9CE2B7F60EE0021199D /* cars_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cars_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5493C9D12B7F60EE0021199D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5493C9D32B7F60EE0021199D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5493C9D52B7F60EE0021199D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5493C9D82B7F60EE0021199D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5493C9DA2B7F60F00021199D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5493C9DD2B7F60F00021199D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5493C9DF2B7F60F00021199D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		549B7BC32B9F050C00CD44BC /* MainScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C8D82B9F132300AF4857 /* MainScreenCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCustomTableViewCell.swift; sourceTree = "<group>"; };
+		54B2C8DE2B9F2DC800AF4857 /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
+		54B2C8E02B9F2DE800AF4857 /* GameScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenPresenter.swift; sourceTree = "<group>"; };
+		54B2C8E22B9F2DFE00AF4857 /* GameScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenModel.swift; sourceTree = "<group>"; };
+		54B2C8E42B9F2E0E00AF4857 /* GameScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C8E62B9F2E3300AF4857 /* SettingsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenViewController.swift; sourceTree = "<group>"; };
+		54B2C8E82B9F2E4300AF4857 /* SettingsScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenPresenter.swift; sourceTree = "<group>"; };
+		54B2C8EA2B9F2E5000AF4857 /* SettingsScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenModel.swift; sourceTree = "<group>"; };
+		54B2C8EC2B9F2E5A00AF4857 /* SettingsScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C8EE2B9F2E8500AF4857 /* RecordsScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenViewController.swift; sourceTree = "<group>"; };
+		54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenPresenter.swift; sourceTree = "<group>"; };
+		54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenModel.swift; sourceTree = "<group>"; };
+		54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C8F92BA0278700AF4857 /* GameOverScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenViewController.swift; sourceTree = "<group>"; };
+		54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameOverScreenPresenter .swift"; sourceTree = "<group>"; };
+		54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenModel.swift; sourceTree = "<group>"; };
+		54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScreenRouter.swift; sourceTree = "<group>"; };
+		54B2C9022BA1D87F00AF4857 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		54B2C9062BA2E4F200AF4857 /* SructSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SructSettings.swift; sourceTree = "<group>"; };
+		54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructPlayer.swift; sourceTree = "<group>"; };
+		54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardCell.swift; sourceTree = "<group>"; };
+		54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
+		54E3E82B2BB3FBBB0088922A /* LayoutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+		54E3E82F2BB420C00088922A /* FontConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07486966DB30D65997B7F195 /* libPods-cars_game.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +97,8 @@
 			children = (
 				5493C9D02B7F60EE0021199D /* cars_game */,
 				5493C9CF2B7F60EE0021199D /* Products */,
+				63EFB0019B26C98B4BE1E678 /* Pods */,
+				B99FAA3CD918A51E094D4BF1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +113,145 @@
 		5493C9D02B7F60EE0021199D /* cars_game */ = {
 			isa = PBXGroup;
 			children = (
-				5493C9D12B7F60EE0021199D /* AppDelegate.swift */,
-				5493C9D32B7F60EE0021199D /* SceneDelegate.swift */,
-				5493C9D52B7F60EE0021199D /* ViewController.swift */,
-				5493C9D72B7F60EE0021199D /* Main.storyboard */,
-				5493C9DA2B7F60F00021199D /* Assets.xcassets */,
-				5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */,
+				54E3E82E2BB400CD0088922A /* Sctruct */,
+				54B2C9012BA1D86100AF4857 /* Common_UI */,
+				54B2C8F82BA0273600AF4857 /* GameOverScreenModule */,
 				5493C9DF2B7F60F00021199D /* Info.plist */,
+				54BFA3992B9C590900741E4E /* MainScreenModule */,
+				54B2C8DA2B9F2D6500AF4857 /* GameScreenModule */,
+				54B2C8DB2B9F2D7C00AF4857 /* SettingsScreenModule */,
+				54B2C8DD2B9F2DA100AF4857 /* RecordsScreenModule */,
+				54B2C8F72B9F321C00AF4857 /* Resources */,
+				54B2C8F62B9F320100AF4857 /* Application */,
 			);
 			path = cars_game;
+			sourceTree = "<group>";
+		};
+		54B2C8DA2B9F2D6500AF4857 /* GameScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C8DE2B9F2DC800AF4857 /* GameScreenViewController.swift */,
+				54B2C8E02B9F2DE800AF4857 /* GameScreenPresenter.swift */,
+				54B2C8E22B9F2DFE00AF4857 /* GameScreenModel.swift */,
+				54B2C8E42B9F2E0E00AF4857 /* GameScreenRouter.swift */,
+			);
+			path = GameScreenModule;
+			sourceTree = "<group>";
+		};
+		54B2C8DB2B9F2D7C00AF4857 /* SettingsScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C8E62B9F2E3300AF4857 /* SettingsScreenViewController.swift */,
+				54B2C8E82B9F2E4300AF4857 /* SettingsScreenPresenter.swift */,
+				54B2C8EA2B9F2E5000AF4857 /* SettingsScreenModel.swift */,
+				54B2C8EC2B9F2E5A00AF4857 /* SettingsScreenRouter.swift */,
+			);
+			path = SettingsScreenModule;
+			sourceTree = "<group>";
+		};
+		54B2C8DD2B9F2DA100AF4857 /* RecordsScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				54E3E82D2BB3FD850088922A /* Cell */,
+				54B2C8EE2B9F2E8500AF4857 /* RecordsScreenViewController.swift */,
+				54B2C8F02B9F2E9100AF4857 /* RecordsScreenPresenter.swift */,
+				54B2C8F22B9F2E9A00AF4857 /* RecordsScreenModel.swift */,
+				54B2C8F42B9F2EA600AF4857 /* RecordsScreenRouter.swift */,
+			);
+			path = RecordsScreenModule;
+			sourceTree = "<group>";
+		};
+		54B2C8F62B9F320100AF4857 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5493C9D12B7F60EE0021199D /* AppDelegate.swift */,
+				5493C9D32B7F60EE0021199D /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		54B2C8F72B9F321C00AF4857 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5493C9DA2B7F60F00021199D /* Assets.xcassets */,
+				5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		54B2C8F82BA0273600AF4857 /* GameOverScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C8F92BA0278700AF4857 /* GameOverScreenViewController.swift */,
+				54B2C8FB2BA027A600AF4857 /* GameOverScreenPresenter .swift */,
+				54B2C8FD2BA027BC00AF4857 /* GameOverScreenModel.swift */,
+				54B2C8FF2BA027D400AF4857 /* GameOverScreenRouter.swift */,
+			);
+			path = GameOverScreenModule;
+			sourceTree = "<group>";
+		};
+		54B2C9012BA1D86100AF4857 /* Common_UI */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C9022BA1D87F00AF4857 /* AppColors.swift */,
+				54E3E82B2BB3FBBB0088922A /* LayoutConstants.swift */,
+				54E3E82F2BB420C00088922A /* FontConstants.swift */,
+			);
+			path = Common_UI;
+			sourceTree = "<group>";
+		};
+		54BFA3992B9C590900741E4E /* MainScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				54E3E82A2BB3FB190088922A /* Cell */,
+				543A86F32B9C57420002D878 /* MainScreenViewController.swift */,
+				54BFA39A2B9C595400741E4E /* MainScreenPresenter.swift */,
+				54BFA39C2B9C610D00741E4E /* MainScreenModel.swift */,
+				549B7BC32B9F050C00CD44BC /* MainScreenRouter.swift */,
+			);
+			path = MainScreenModule;
+			sourceTree = "<group>";
+		};
+		54E3E82A2BB3FB190088922A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C8D82B9F132300AF4857 /* MainScreenCustomTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		54E3E82D2BB3FD850088922A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C90A2BA305CE00AF4857 /* LeaderboardCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		54E3E82E2BB400CD0088922A /* Sctruct */ = {
+			isa = PBXGroup;
+			children = (
+				54B2C9062BA2E4F200AF4857 /* SructSettings.swift */,
+				54B2C9082BA2FC7200AF4857 /* StructPlayer.swift */,
+			);
+			path = Sctruct;
+			sourceTree = "<group>";
+		};
+		63EFB0019B26C98B4BE1E678 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				130376472200ADFD5D5FC6BA /* Pods-cars_game.debug.xcconfig */,
+				2B36710F9D7AC290ADD10300 /* Pods-cars_game.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B99FAA3CD918A51E094D4BF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EA826CF61DF3815358668CA /* libPods-cars_game.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +261,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5493C9E22B7F60F00021199D /* Build configuration list for PBXNativeTarget "cars_game" */;
 			buildPhases = (
+				86EDD94230F657CBE5833F1A /* [CP] Check Pods Manifest.lock */,
 				5493C9CA2B7F60EE0021199D /* Sources */,
 				5493C9CB2B7F60EE0021199D /* Frameworks */,
 				5493C9CC2B7F60EE0021199D /* Resources */,
@@ -127,34 +315,76 @@
 			files = (
 				5493C9DE2B7F60F00021199D /* LaunchScreen.storyboard in Resources */,
 				5493C9DB2B7F60F00021199D /* Assets.xcassets in Resources */,
-				5493C9D92B7F60EE0021199D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		86EDD94230F657CBE5833F1A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-cars_game-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5493C9CA2B7F60EE0021199D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5493C9D62B7F60EE0021199D /* ViewController.swift in Sources */,
+				54B2C8F32B9F2E9A00AF4857 /* RecordsScreenModel.swift in Sources */,
+				543A86F42B9C57420002D878 /* MainScreenViewController.swift in Sources */,
+				54B2C8E32B9F2DFE00AF4857 /* GameScreenModel.swift in Sources */,
+				549B7BC42B9F050C00CD44BC /* MainScreenRouter.swift in Sources */,
+				54B2C8E52B9F2E0E00AF4857 /* GameScreenRouter.swift in Sources */,
+				54B2C8FC2BA027A600AF4857 /* GameOverScreenPresenter .swift in Sources */,
+				54B2C8ED2B9F2E5A00AF4857 /* SettingsScreenRouter.swift in Sources */,
+				54B2C8DF2B9F2DC800AF4857 /* GameScreenViewController.swift in Sources */,
+				54B2C9072BA2E4F200AF4857 /* SructSettings.swift in Sources */,
+				54B2C8E72B9F2E3300AF4857 /* SettingsScreenViewController.swift in Sources */,
+				54B2C9002BA027D400AF4857 /* GameOverScreenRouter.swift in Sources */,
+				54B2C8EF2B9F2E8500AF4857 /* RecordsScreenViewController.swift in Sources */,
+				54B2C8EB2B9F2E5000AF4857 /* SettingsScreenModel.swift in Sources */,
+				54BFA39B2B9C595400741E4E /* MainScreenPresenter.swift in Sources */,
 				5493C9D22B7F60EE0021199D /* AppDelegate.swift in Sources */,
+				54E3E82C2BB3FBBB0088922A /* LayoutConstants.swift in Sources */,
+				54B2C8D92B9F132300AF4857 /* MainScreenCustomTableViewCell.swift in Sources */,
+				54B2C8F12B9F2E9100AF4857 /* RecordsScreenPresenter.swift in Sources */,
+				54B2C9092BA2FC7200AF4857 /* StructPlayer.swift in Sources */,
+				54B2C8FA2BA0278800AF4857 /* GameOverScreenViewController.swift in Sources */,
+				54B2C90B2BA305CE00AF4857 /* LeaderboardCell.swift in Sources */,
+				54B2C9032BA1D87F00AF4857 /* AppColors.swift in Sources */,
 				5493C9D42B7F60EE0021199D /* SceneDelegate.swift in Sources */,
+				54BFA39D2B9C610D00741E4E /* MainScreenModel.swift in Sources */,
+				54E3E8302BB420C10088922A /* FontConstants.swift in Sources */,
+				54B2C8E12B9F2DE800AF4857 /* GameScreenPresenter.swift in Sources */,
+				54B2C8F52B9F2EA600AF4857 /* RecordsScreenRouter.swift in Sources */,
+				54B2C8E92B9F2E4300AF4857 /* SettingsScreenPresenter.swift in Sources */,
+				54B2C8FE2BA027BC00AF4857 /* GameOverScreenModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		5493C9D72B7F60EE0021199D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5493C9D82B7F60EE0021199D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5493C9DC2B7F60F00021199D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -287,6 +517,7 @@
 		};
 		5493C9E32B7F60F00021199D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 130376472200ADFD5D5FC6BA /* Pods-cars_game.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -297,7 +528,6 @@
 				INFOPLIST_FILE = cars_game/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -315,6 +545,7 @@
 		};
 		5493C9E42B7F60F00021199D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B36710F9D7AC290ADD10300 /* Pods-cars_game.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -325,7 +556,6 @@
 				INFOPLIST_FILE = cars_game/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
